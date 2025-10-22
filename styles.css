@@ -1882,4 +1882,41 @@ a {
 #services .pill {
   margin-bottom: 10px !important; /* malý odstup mezi štítkem a textem */
 }
+/* === HERO – přizpůsobení výšky pro menší zařízení === */
+
+/* Výchozí (desktop) zůstane jako doteď */
+.hero {
+  height: 100vh;
+}
+
+/* Tablety – menší hero, cca 75 % výšky okna */
+@media (max-width: 1024px) {
+  .hero {
+    height: 75vh;
+  }
+}
+
+/* Mobily – ještě kompaktnější hero */
+@media (max-width: 768px) {
+  .hero {
+    height: 65vh;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem; /* menší nadpis, aby se vešel */
+  }
+  .hero-content .tagline {
+    font-size: 1rem;
+  }
+  .btn.cta {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Fix pro iOS Safari, kde vh bývá nespolehlivé */
+@supports (-webkit-touch-callout: none) {
+  .hero {
+    height: 100dvh; /* použije "dynamic viewport height" */
+  }
+}
 
