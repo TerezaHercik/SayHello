@@ -280,14 +280,14 @@ a {
 /* Hero inspired by the screenshot */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100svh !important;  /* přesně výška zařízení */
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  /* posuneme pozadí směrem dolů */
   background: url('../assets/hero-image.jpg') center 20% / cover no-repeat;
+  padding: 0 !important;
 }
+
 
 
 .hero-overlay {
@@ -320,13 +320,6 @@ a {
   padding-inline: var(--site-gutter);
 }
 
-/* Hero pozadí – s posunem dolů podle tvého nastavení */
-.hero {
-  position: relative;
-  height: 100vh;
-  display: block; /* obsah zarovnáme přes .hero-inner */
-  background: url('../assets/hero-image.jpg') center 25% / cover no-repeat;
-}
 
 /* NOVĚ: vnitřek hero má stejnou šířku jako nav, a obsah tlačíme doprava */
 .hero-inner {
@@ -1884,23 +1877,6 @@ a {
 }
 /* === HERO – přizpůsobení výšky pro menší zařízení === */
 
-/* Výchozí (desktop) zůstane jako doteď */
-.hero {
-  height: 100vh;
-}
-
-/* Tablety – menší hero, cca 75 % výšky okna */
-@media (max-width: 1024px) {
-  .hero {
-    height: 75vh;
-  }
-}
-
-/* Mobily – ještě kompaktnější hero */
-@media (max-width: 768px) {
-  .hero {
-    height: 65vh;
-  }
   .hero-content h1 {
     font-size: 1.8rem; /* menší nadpis, aby se vešel */
   }
@@ -1913,10 +1889,31 @@ a {
   }
 }
 
+
 /* Fix pro iOS Safari, kde vh bývá nespolehlivé */
 @supports (-webkit-touch-callout: none) {
   .hero {
     height: 100dvh; /* použije "dynamic viewport height" */
   }
 }
+/* === HERO: přesně na výšku zařízení na mobilech a tabletech === */
 
+/* Tablety i mobily */
+@media (max-width: 1024px) {
+  .hero {
+    height: 100svh !important;     /* přesně výška zařízení */
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    padding: 0 !important;         /* jistota, že nic nepřidává výšku */
+  }
+}
+
+/* Pro jistotu i extra malá zařízení */
+@media (max-width: 768px) {
+  .hero {
+    height: 100svh !important;
+  }
+}
+
+/* Pokud máš v .hero-inner nějaké mezery, ať nevyžene výšku */
+.hero-inner { min-height: inherit; }
