@@ -470,8 +470,12 @@ a {
   .slider-btn { width: 38px; height: 38px; }
   .slider-dots button { width: 10px; height: 10px; }
 }
-
-
+/* === HERO – přizpůsobení výšky pro menší zařízení === */
+@media (max-width: 420px) {
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content .tagline { font-size: 1rem; }
+  .btn.cta { padding: 10px 20px; font-size: 0.9rem; }
+}
 
 .footer {
   background: #1e1b18;
@@ -1911,38 +1915,46 @@ a {
 /* Pro jistotu i extra malá zařízení */
 @media (max-width: 768px) {
   .hero {
+    height: 100svh !important;
+  }
+}
+/* --- FIX: mobilní výška hero + menší typografie --- */
+
+/* Na telefonech: kratší hero, žádné tvrdé 100svh */
+@media (max-width: 900px) {
+  .hero {
     height: auto !important;
-    min-height: 72svh !important;
-    padding-top: clamp(64px, 10vh, 96px) !important;
+    min-height: 78svh !important;         /* cca 3/4 obrazovky */
+    padding-top: clamp(64px, 10vh, 96px) !important; /* rezerva pod fixní nav */
     padding-bottom: 18px !important;
   }
   .hero-inner { align-items: flex-end; padding-bottom: 8px; }
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content .tagline { font-size: 1.05rem; }
+}
+
+/* Na tabletech může být vyšší, ale ne 100% – ať je vidět, že je co scrollovat */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .hero {
+    height: auto !important;
+    min-height: 88svh !important;
+    padding-top: 96px !important;
+  }
 }
 
 /* Pokud máš v .hero-inner nějaké mezery, ať nevyžene výšku */
 .hero-inner { min-height: inherit; }
+/* --- FIX: žádný horizontální scroll celé stránky --- */
+html, body { overflow-x: hidden; }
 
-
-/* === FIX PACK v1.1 (mobile hero + horizontal wiggle) === */
-html, body { overflow-x: hidden !important; }
-
-@media (max-width: 900px) {
-  .hero {
-    height: auto !important;
-    min-height: 76svh !important;
-  }
-}
-
-/* Drawer/menu nesmí rozšiřovat layout mimo viewport */
+/* Drawer nikdy neroztahuje stránku mimo viewport (i když je transformovaný) */
 .mobile-menu { contain: layout paint; }
 
-/* Karusely/slidery neovlivní horizontální scroll stránky */
-#gallery .slider-track,
-.slider, .slider-track {
+/* Karusel nevyvolá „přetažení“ celé stránky při swipe */
+#gallery .slider-track {
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Pásy přes celou šířku nebudou vytvářet overflow */
-.section-band { overflow-x: clip !important; }
-
+/* Pro jistotu u full-bleed pásů */
+.section-band { overflow-x: clip; }
