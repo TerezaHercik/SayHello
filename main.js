@@ -141,3 +141,99 @@
     if (e.key === 'Escape') accept();
   });
 })();
+// ===== Cookie banner logic =====
+(function () {
+  const banner = document.querySelector('.cookie-banner');
+  if (!banner) return;
+
+  const acceptBtns = document.querySelectorAll('[data-accept]');
+  const declineBtns = document.querySelectorAll('[data-decline]');
+  const learnLink   = banner.querySelector('.cookie-link');
+  const modal       = document.querySelector('#cookies-policy');
+  const closeBtns   = document.querySelectorAll('[data-close-modal], #cookies-policy .cookie-modal__close');
+
+  const showBanner = () => { banner.style.display = 'flex'; };
+  const hideBanner = () => { banner.style.display = 'none'; };
+
+  // zobraz pouze pokud ještě není volba uložená
+  const saved = localStorage.getItem('cookieConsent');
+  if (!saved) showBanner();
+
+  acceptBtns.forEach(btn => btn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'granted');
+    hideBanner();
+    if (modal) modal.classList.remove('is-open');
+  }));
+
+  declineBtns.forEach(btn => btn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'denied');
+    hideBanner();
+  }));
+
+  if (learnLink && modal) {
+    learnLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  }
+
+  closeBtns.forEach(btn => btn.addEventListener('click', () => {
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  }));
+
+  // zavření ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+}); // <— místo původního });})();
+
+// ===== Mobile menu toggle =====
+(function () {
+  const toggle = document.getElementById('menuToggle');
+  const drawer = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+
+  if (!toggle || !drawer || !overlay) return;
+
+  const open = () => {
+    drawer.hidden = false;
+    overlay.hidden = false;
+    // malé timeouty pro CSS animaci
+    requestAnimationFrame(() => {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    });
+  };
+
+  const close = () => {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    // po animaci skryjeme z DOM flow
+    setTimeout(() => { drawer.hidden = true; overlay.hidden = true; }, 200);
+  };
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    expanded ? close() : open();
+  });
+
+  overlay.addEventListener('click', close);
+  drawer.addEventListener('click', (e) => {
+    if (e.target.matches('a')) close(); // zavři po kliknutí na odkaz
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !drawer.hidden) close();
+  });
+})();
+

@@ -17,26 +17,56 @@
     <script defer src="./main.js"></script>
   </head>
   <body>
+    
     <!-- NAV -->
-    <header class="top-nav" role="navigation" aria-label="Primary">
-      <div class="container nav-inner">
-        <a class="brand" href="#home" aria-label="Say Hello — home">
-          <span class="logo-wrap">
-            <img src="./assets/logo.png" alt="Say Hello logo" class="logo" />
-          </span>
-        </a>
+   <header class="top-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-inner">
+    <!-- logo/brand (nech jak máš) -->
+    <a class="brand" href="#home" aria-label="Signiji Beauty — home">
+      <img class="logo" src="./assets/logo.png" alt="Say Hello" />
+    </a>
 
-        <nav>
-          <ul class="menu">
-            <li><a href="#about">About me</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#pricing">Prices</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#booking" class="btn-nav">Book your treat</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- DESKTOP MENU (zůstává) -->
+    <nav class="menu-desktop" aria-label="Primary">
+      <ul class="menu">
+        <li><a href="#about">About me</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Prices</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn-nav" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite&_branch_match_id=1507298587448697686&utm_medium=profile_share_from_profile&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs%2FVzzAuyvCqci4vDE%2ByrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUA62rr%2FTwAAAA%3D" target="_blank" rel="noopener">Book consultation</a></li>
+      </ul>
+    </nav>
+
+    <!-- MOBILE CONTROLS -->
+    <div class="mobile-controls">
+      <!-- vlevo: červené CTA -->
+      <a class="btn-nav btn-nav--mobile"
+         href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite&_branch_match_id=1507298587448697686&utm_medium=profile_share_from_profile&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs%2FVzzAuyvCqci4vDE%2ByrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUA62rr%2FTwAAAA%3D"
+         target="_blank" rel="noopener">
+        Book your treat
+      </a>
+
+      <!-- vedle: Menu + hamburger -->
+      <button class="hamburger" id="menuToggle"
+              aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span class="hamburger-label">Menu</span>
+        <span class="hamburger-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE DRAWER -->
+  <nav id="mobileMenu" class="mobile-menu" hidden aria-label="Mobile">
+    <ul>
+      <li><a href="#about">About me</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Prices</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" hidden></div>
+</header>
+
 
     <!-- HERO -->
     <section class="hero" id="home" aria-label="Hero section">
@@ -132,39 +162,46 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="section section-about" id="about">
-      <div class="container about-inner">
-        <figure class="portrait">
-          <img src="./assets/signija.jpg" alt="Signiji – Beauty therapist" />
-        </figure>
-        <div>
-          <h3>About me</h3>
-          <p>
-            My name is Signija and I help women in Bournemouth area feel more confident. I
-            focus on a sensitive approach, high-quality brands and education in
-            simple, sustainable skincare. I speak English and Latvian.
-          </p>
-          <p>
-            I love my job and life in all its ways. I will always greet you with smile, I will put your favourite music on while I’ll be working on your beauty. I warm you with cosy atmosphere, great conversation and dose of humour.
-          </p>
-          <div class="badgebar">
-            <span class="pill">Dermalogica Certified</span>
-            <span class="pill">Cruelty-free</span>
-            <span class="pill">Latvian / English</span>
-          </div>
-          <div class="about-cta">
-            <a
-              href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary"
-              >Book your treat</a
-            >
-            <a href="#contact" class="btn btn-outline">Find studio</a>
-          </div>
-        </div>
+<section class="section section-about" id="about">
+  <div class="container about">
+    <!-- TEXT + CTA (nahoře na mobilu) -->
+    <div class="about-content">
+      <h3>About me</h3>
+      <p>
+        My name is Signija and I help women in Bournemouth area feel more confident. I
+        focus on a sensitive approach, high-quality brands and education in
+        simple, sustainable skincare. I speak English and Latvian.
+      </p>
+      <p>
+        I love my job and life in all its ways. I will always greet you with smile, I will put your favourite music on while I’ll be working on your beauty. I warm you with cosy atmosphere, great conversation and dose of humour.
+      </p>
+
+      <div class="badgebar">
+        <span class="pill">Dermalogica Certified</span>
+        <span class="pill">Cruelty-free</span>
+        <span class="pill">Latvian / English</span>
       </div>
-    </section>
+
+      <div class="about-cta actions">
+        <a
+          href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          Book your treat
+        </a>
+        <a href="#contact" class="btn btn-outline">Find studio</a>
+      </div>
+    </div>
+
+    <!-- FOTO (pod textem na mobilu) -->
+    <figure class="about-media">
+      <img src="./assets/signija.jpg" alt="Signiji – Beauty therapist" />
+    </figure>
+  </div>
+</section>
+
 
 
     <!-- GALLERY (multi-item slider) -->
@@ -374,13 +411,31 @@
       >Book your treat</a>
     </div>
 
-    <!-- COOKIES BANNER -->
-    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
-      <p>
-        This website uses cookies to improve your browsing experience.
-        <a href="#" class="cookie-link">Learn more</a>
-      </p>
-      <button id="accept-cookies" class="cookie-btn">Accept</button>
+    <!-- Cookies banner -->
+<div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  <p>
+    We use cookies to improve your experience.
+    <a href="#cookies-policy" class="cookie-link">Learn more</a>
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn" data-accept>Accept</button>
+    <button class="cookie-btn ghost" data-decline>Decline</button>
+  </div>
+</div>
+
+<!-- Simple modal with cookie info -->
+<div id="cookies-policy" class="cookie-modal" aria-hidden="true">
+  <div class="cookie-modal__dialog" role="document">
+    <button class="cookie-modal__close" type="button" data-close-modal aria-label="Close">✕</button>
+    <h4>Cookies on this site</h4>
+    <p>We use essential cookies to make the site work and analytics cookies to understand usage. You can accept or decline analytics at any time.</p>
+    <p><a href="#contact">Contact us</a> if you have any questions.</p>
+    <div class="cookie-modal__actions">
+      <button class="cookie-btn" data-accept>Accept</button>
+      <button class="cookie-btn ghost" data-close-modal>Close</button>
     </div>
+  </div>
+</div>
+
   </body>
 </html>
