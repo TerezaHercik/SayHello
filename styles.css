@@ -1911,38 +1911,35 @@ a {
 /* Pro jistotu i extra malá zařízení */
 @media (max-width: 768px) {
   .hero {
-    height: auto !important;
-    min-height: 72svh !important;
-    padding-top: clamp(64px, 10vh, 96px) !important;
-    padding-bottom: 18px !important;
+    height: 100svh !important;
   }
-  .hero-inner { align-items: flex-end; padding-bottom: 8px; }
 }
 
 /* Pokud máš v .hero-inner nějaké mezery, ať nevyžene výšku */
 .hero-inner { min-height: inherit; }
 
 
-/* === FIX PACK v1.1 (mobile hero + horizontal wiggle) === */
-html, body { overflow-x: hidden !important; }
+/* === FIX PACK v1.2 (mobile right gutter for cards) =================== */
+:root { --page-gutter: clamp(16px, 5vw, 24px); }
 
-@media (max-width: 900px) {
-  .hero {
-    height: auto !important;
-    min-height: 76svh !important;
+@media (max-width: 820px) {
+  /* Přidej stejnou mezeru vlevo i vpravo téměř všem hlavním obalům */
+  :where(body, main, .page, section, .section, .container, .wrap, .wrapper, .content) {
+    padding-left: var(--page-gutter) !important;
+    padding-right: var(--page-gutter) !important;
+  }
+
+  /* Karty/sloupce nesmí mít negativní pravý okraj ani 100% šířku přes padding */
+  :where(.card, .service-card, .price-card, .feature-card, .offer-card) {
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Mřížky/listy nebudou „přetékat“ doprava (kvůli stínům a transformacím) */
+  :where(.cards, .services-list, .grid, .list, .columns) {
+    overflow-x: clip;
   }
 }
-
-/* Drawer/menu nesmí rozšiřovat layout mimo viewport */
-.mobile-menu { contain: layout paint; }
-
-/* Karusely/slidery neovlivní horizontální scroll stránky */
-#gallery .slider-track,
-.slider, .slider-track {
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Pásy přes celou šířku nebudou vytvářet overflow */
-.section-band { overflow-x: clip !important; }
+/* ==================================================================== */
 
