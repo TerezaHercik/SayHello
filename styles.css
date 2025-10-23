@@ -2097,3 +2097,109 @@ p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
     margin-left: 8px;
   }
 }
+/* --- Zarovnání CTA tlačítka v navigaci --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Menu odkazy */
+.navbar a {
+  display: inline-block;
+  padding: 12px 18px;
+  line-height: 1;
+}
+
+/* CTA tlačítko v navigaci */
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 26px;
+  line-height: 1;
+  vertical-align: middle;
+  position: relative;
+  top: 0; /* dorovnáme přesně s textem menu */
+}
+
+/* Pokud chceš o chlup víc do výšky kvůli vizuální rovnováze */
+@media (min-width: 768px) {
+  .btn-nav {
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+}
+/* === DESKTOP NAV: stejné svislé zarovnání pro všechny položky === */
+.menu { 
+  display: flex; 
+  align-items: center;           /* vycentruje položky na stejnou výšku */
+}
+
+.menu li { 
+  display: flex;                 /* ať <li> kopíruje výšku obsahu */
+}
+
+.menu li a,
+.menu li .btn-nav {
+  display: inline-flex;          /* stejné box chování pro odkazy i CTA */
+  align-items: center;           /* text přesně doprostřed na výšku */
+  line-height: 1;                /* jednotná metrika */
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* jistota: CTA nemá žádný vertikální offset */
+.menu .btn-nav { position: relative; top: 0; }
+/* === CTA tlačítka v sekci About me === */
+.about-cta {
+  display: flex;
+  gap: 1rem;              /* mezera mezi tlačítky */
+  justify-content: center;
+  flex-wrap: wrap;        /* dovolí zalomení na menších šířkách */
+}
+
+/* --- Na mobilech pod sebe --- */
+@media (max-width: 600px) {
+  .about-cta {
+    flex-direction: column; /* pod sebe */
+    align-items: center;    /* na střed */
+    gap: 16px;              /* mezera mezi tlačítky */
+  }
+}
+/* === CTA v sekci Location === */
+.location .btn,
+.location .btn-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;       /* zarovnání textu */
+}
+
+/* --- Na mobilech: užší tlačítko --- */
+@media (max-width: 600px) {
+  .location .btn,
+  .location .btn-cta {
+    width: 70%;             /* zmenší šířku tlačítka */
+    max-width: 280px;       /* ať není přes celou obrazovku */
+    margin: 0 auto;         /* vystředí tlačítko */
+    font-size: 0.95rem;     /* trochu menší písmo */
+    padding: 12px 16px;     /* vyvážený vnitřní prostor */
+  }
+}
+/* === LOCATION: užší CTA na mobilech === */
+@media (max-width: 600px) {
+  #contact .map-link {
+    display: inline-flex !important;   /* jistota proti jiným pravidlům */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 70% !important;             /* zúžení */
+    max-width: 260px !important;        /* strop šířky */
+    margin: 10px auto 0 !important;     /* vystředit v card */
+
+    padding: 12px 16px !important;      /* menší vnitřek, ať není „přes celou“ */
+    white-space: nowrap;                 /* drž text na 1 řádku */
+  }
+}
