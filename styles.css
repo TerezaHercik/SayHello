@@ -2203,3 +2203,28 @@ p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
     white-space: nowrap;                 /* drž text na 1 řádku */
   }
 }
+/* Mobile: skryj spodní sticky CTA bar */
+@media (max-width: 600px) {
+  #sticky-cta,
+  .sticky-cta,
+  .cta-sticky,
+  .bottom-cta,
+  .mobile-bottom-cta,
+  .cta-bar,
+  .floating-cta,
+  [data-sticky-cta] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* MOBILE: schovat spodní sticky CTA a vrátit padding stránky */
+@media (max-width: 900px) {
+  .mobile-cta { 
+    display: none !important;
+  }
+  body { 
+    padding-bottom: 0 !important;
+  }
+}

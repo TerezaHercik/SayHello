@@ -2,6 +2,11 @@
    Upravený, robustní skript pro navigaci, slider, cookie banner, flip karty a drobné UI helpers.
    Uložit přes ./main.js (bez diff headeru).
 */
+// Mobile guard: na mobilech spodní CTA vůbec nevytvářej / ihned odstraň
+if (window.matchMedia('(max-width: 600px)').matches) {
+  document.querySelectorAll('#sticky-cta,.sticky-cta,.cta-sticky,.bottom-cta,.mobile-bottom-cta,.cta-bar,.floating-cta,[data-sticky-cta]')
+    .forEach(el => el.remove());
+}
 
 /* ===== helpers (nepovinné) ===== */
 (() => {
