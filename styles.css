@@ -1629,3 +1629,298 @@ a {
     height: auto;
   }
 }
+/* --------------------------
+   MOBILE NAV layout tweaks
+   -------------------------- */
+.mobile-controls {
+  display: none; /* default hidden; shown via media query */
+  align-items: center;
+  gap: 8px;
+}
+
+/* hamburger button: label then bars */
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.28);
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-weight: 700;
+}
+.hamburger-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #fff;
+}
+.hamburger-bars {
+  width: 18px; height: 12px; position: relative; display: inline-block;
+  background: transparent;
+}
+.hamburger-bars::before,
+.hamburger-bars::after,
+.hamburger-bars::after {
+  content: ""; display: block; background: #fff; height: 2px; border-radius: 2px;
+}
+.hamburger-bars::before { position: absolute; top: -5px; left: 0; width: 18px; }
+.hamburger-bars::after  { position: absolute; bottom: -5px; left: 0; width: 18px; }
+.hamburger-bars { background: #fff; height: 2px; width:18px; border-radius: 2px; position: relative; }
+.hamburger-bars::before, .hamburger-bars::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: #fff; border-radius:2px;
+}
+.hamburger-bars::before { top: -5px; } .hamburger-bars::after { bottom: -5px; }
+
+/* mobile CTA button */
+.btn-nav--mobile {
+  background: #e04b3f;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* show mobile-controls on small screens and position next to logo */
+@media (max-width: 900px) {
+  .mobile-controls { display: inline-flex; margin-left: 12px; }
+  /* hide desktop menu */
+  .menu-desktop { display: none !important; }
+  /* reduce logo size to keep nav slim */
+  .logo { height: 56px; }
+}
+
+/* --------------------------
+   COOKIE BANNER: mobile-first adjustments
+   -------------------------- */
+.cookie-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10001;
+  background: rgba(30,27,24,0.95);
+  color: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  display: none; /* JS will show */
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* Layout on narrow screens: stacked, big Accept CTA visible */
+@media (max-width: 560px) {
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom)); /* safe area */
+  }
+  .cookie-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .cookie-btn {
+    flex: 1 1 auto;
+    padding: 12px 14px;
+    font-weight: 700;
+    border-radius: 999px;
+  }
+  .cookie-btn.ghost { background: transparent; color: #e04b3f; border: 2px solid #e04b3f; }
+}
+
+/* Ensure Accept CTA is clearly visible */
+.cookie-btn { background: #e04b3f; color: #fff; border: 0; padding: 8px 12px; border-radius: 999px; font-weight:700; }
+.cookie-link { color: #e9d8c7; text-decoration: underline; }
+
+/* Cookie modal styling (kept minimal) */
+.cookie-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 10002; }
+.cookie-modal.is-open { display: flex; }
+.cookie-modal__dialog { background: #fff; color: #1e1b18; width: min(720px, 92%); max-height: 80vh; overflow:auto; border-radius: 12px; padding: 18px; }
+
+/* --------------------------
+   HERO: reduce height on tablet & mobile so next content peeks through
+   -------------------------- */
+.hero {
+  position: relative;
+  height: 100svh; /* desktop default */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  background-size: cover;
+  background-position: center 20%;
+}
+
+/* Tablet: slightly shorter so you see following content */
+@media (max-width: 1024px) {
+  .hero {
+    height: 75svh; /* show a bit of the next section */
+    min-height: 60svh;
+  }
+  .hero-inner { justify-content: center; }
+  .hero-content { text-align: center; margin-right: 0; padding-bottom: 16px; }
+}
+
+/* Mobile: even shorter */
+@media (max-width: 600px) {
+  .hero {
+    height: 68svh;
+    min-height: 56svh;
+    padding-top: clamp(68px, 10vh, 96px); /* reserve for fixed nav */
+    padding-bottom: 12px;
+  }
+  .hero-content h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+  .hero-content .tagline { font-size: 0.95rem; }
+}
+
+/* small improvement: ensure hero-overlay doesn't hide "peek" */
+.hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.35) 70%); }
+
+/* Keep other existing rules untouched; just add above to your file */
+/* Remove white gap between Contact section and footer */
+#contact {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.footer {
+  margin-top: 0 !important;
+}
+/* Add breathing space under Contact & Location section */
+#contact {
+  padding-bottom: 60px !important; /* prostor mezi kartami a patičkou */
+  margin-bottom: 0 !important;
+}
+
+.footer {
+  margin-top: 0 !important;
+}
+@media (max-width: 900px) {
+  #contact {
+    padding-bottom: 80px !important;
+  }
+}
+/* ===========================
+   RESPONSIVE LAYER (override)
+   Vložit na konec styles.css
+   =========================== */
+
+/* 1) Globál + typografie */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; } /* prevence horizontálního scrollu */
+
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.4rem, 3.2vw, 2.2rem); }
+h3 { font-size: clamp(1.3rem, 2.6vw, 2rem); }
+p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
+
+/* 2) Kontejner + sekce (vzduch podle šířky) */
+:root {
+  --site-max: 1100px;
+  --site-gutter: 24px;
+}
+.container {
+  max-width: var(--site-max);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+.section,
+.section-band {
+  padding-block: clamp(56px, 8vw, 96px);
+}
+
+/* 3) Grids — 3 → 2 → 1 sloupec */
+.grid-3,
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2.4vw, 22px);
+}
+
+.about,
+.about-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(18px, 3vw, 28px);
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .grid-3,
+  .testimonials { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 700px) {
+  .grid-3,
+  .testimonials { grid-template-columns: 1fr; }
+  .about,
+  .about-inner { grid-template-columns: 1fr; }
+}
+
+/* 4) Karty: sjednocení vnitřních okrajů, výšky a „odlep“ CTA dolů */
+.card { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  padding: clamp(16px, 3vw, 22px); 
+}
+.card .btn { margin-top: auto; }
+
+/* 5) Hero – výška a centrování textu na menších šířkách */
+.hero { background-position: center 20%; }
+@media (max-width: 1024px) {
+  .hero-inner { justify-content: center; }
+  .hero-content { text-align: center; margin: 0; }
+}
+
+/* 6) Galerie – výšky náhledů a breakpoints */
+#gallery .slide img {
+  height: clamp(200px, 24vw, 240px);
+  object-fit: cover;
+}
+@media (max-width: 900px) {
+  #gallery .slide { flex: 0 0 calc((100% - 16px) / 2); }
+}
+@media (max-width: 560px) {
+  #gallery .slide { flex: 0 0 100%; }
+  #gallery .slide img { height: 60vw; }
+}
+
+/* 7) Flip karty – lepší poměr na mobilech + bez ořezu obrázků */
+.grid-3 .flip-card { aspect-ratio: 4 / 3; }
+@media (max-width: 700px) { .grid-3 .flip-card { aspect-ratio: 3 / 4; } }
+.flip-back .flip-media img { object-fit: contain; }
+
+/* 8) Navigace – zmenšení loga a paddingu na mobilech */
+@media (max-width: 900px) {
+  .top-nav { padding-block: 14px; }
+  .logo { height: 56px; }
+}
+
+/* 9) Sekce Contact & Location – nech barvu a dodej „vzduch“ nad patičkou */
+#contact {
+  /* zůstává #e9dfd7 (viz stávající pravidla) */
+  padding-bottom: clamp(56px, 8vw, 80px) !important;  /* prostor pod sloupci */
+  margin-bottom: 0 !important;
+}
+.footer { margin-top: 0 !important; }
+
+/* 10) Formulář – vstupy přes celou šířku na mobilech */
+@media (max-width: 700px) {
+  form .input, form textarea, form input { width: 100%; }
+}
+
+/* 11) Drobnosti: štítky, odstavce, pilulky a tečky v mřížkách */
+.pill { white-space: nowrap; }
+.note { line-height: 1.7; }
+
+/* 12) Bezpečné odsazení nad kotevními sekcemi (kvůli fixed nav) */
+#about, #gallery, #contact, #booking, #services, #reviews { scroll-margin-top: 84px; }
