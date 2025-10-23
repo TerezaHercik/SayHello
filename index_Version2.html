@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signiji Beauty • Facial & Lash Specialist in Poole, Dorset (UK)</title>
+    <meta name="description" content="Professional beauty therapist in Poole offering facials, lash lifts, brow shaping, and make-up. Gentle skincare rituals using Dermalogica and Medik8 products. Book your appointment today!" />
+    <meta name="keywords" content="beauty salon Poole, facial Poole Dorset, lash lift Poole, brow shaping Poole, make-up artist Poole, skincare therapist Dorset, Signiji Beauty" />
+    <link rel="canonical" href="https://signiji.beauty" />
+    <meta property="og:title" content="Signiji Beauty • Facial & Lash Specialist in Poole, Dorset" />
+    <meta property="og:description" content="Gentle skincare, lash & brow treatments and make-up in Poole, Dorset. Book your beauty appointment with Signiji today!" />
+    <meta property="og:image" content="https://signiji.beauty/assets/hero.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- BOOTSTRAP CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- YOUR STYLES -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- DEFERRED APP JS -->
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <!-- NAV -->
+   <header class="top-nav" role="navigation" aria-label="Primary">
+    <div class="container nav-inner d-flex align-items-center">
+      <!-- logo/brand -->
+      <a class="brand d-inline-flex align-items-center" href="#home" aria-label="Signiji Beauty — home">
+        <img class="logo" src="./assets/logo.png" alt="Say Hello" />
+      </a>
+
+      <!-- DESKTOP MENU -->
+      <nav class="menu-desktop ms-auto d-none d-md-block" aria-label="Primary">
+        <ul class="menu d-flex align-items-center mb-0">
+          <li><a href="#about">About me</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Prices</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a class="btn-nav" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener">Book your treat</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- MOBILE CONTROLS -->
+      <div class="mobile-controls d-flex d-md-none align-items-center ms-auto">
+        <a class="btn-nav btn-nav--mobile me-2"
+           href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite"
+           target="_blank" rel="noopener">
+          Book your treat
+        </a>
+
+        <button class="hamburger" id="menuToggle"
+                aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <span class="hamburger-label">Menu</span>
+          <span class="hamburger-bars" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE DRAWER -->
+    <nav id="mobileMenu" class="mobile-menu" hidden aria-label="Mobile">
+      <ul>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Prices</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn-nav" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener">Book your treat</a></li>
+      </ul>
+    </nav>
+    <div class="menu-overlay" id="menuOverlay" hidden></div>
+   </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-label="Hero section">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1>Say Hello</h1>
+          <h2 class="kicker">Beauty Studio</h2>
+          <p class="tagline">YOU’RE BORN TO BE BEAUTIFUL</p>
+          <a class="btn cta" href="#services">
+            Read more <span class="arrow-down" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section-band" id="services" aria-label="Services">
+      <div class="container text-center">
+        <h3>Services</h3>
+        <p class="note mx-auto" style="max-width:780px;">
+          All treatments can be combined into packages. I’ll be happy to advise
+          the right option for your skin type and goals.
+        </p>
+
+        <!-- Bootstrap row: centered on desktop, stacks on mobile -->
+        <div class="row justify-content-center gx-4 gy-4 mt-3">
+          <!-- 1 -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <article class="card flip-card w-100">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <span class="pill">Eyebrows & Lashes</span>
+                  <h4>Eyebrows & Lashes</h4>
+                  <p>Shaping and tinting eyebrows, eyelashes tinting. You can choose from different colors.</p>
+                  <div class="price">from £5 / 30 min</div>
+                </div>
+                <div class="flip-back">
+                  <div class="flip-media">
+                    <img src="./assets/eyebrows.jpg" alt="Eyebrows & Lashes" />
+                  </div>
+                  <h4>Eyebrows & Lashes</h4>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 2 -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <article class="card flip-card w-100">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <span class="pill">Lashes Extensions</span>
+                  <h4>Lash Lift / Brow Lift & Shaping</h4>
+                  <p>Classic, Angel or Volume Lashes Extensions. We'll find the best option for you. Including infills.</p>
+                  <div class="price">from £35 / 2 hrs</div>
+                </div>
+                <div class="flip-back">
+                  <div class="flip-media">
+                    <img src="./assets/lashes.jpg" alt="Lashes Extensions" />
+                  </div>
+                  <h4>Lashes Extensions</h4>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 3 -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <article class="card flip-card w-100">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <span class="pill">Make-up</span>
+                  <h4>Permanent Make-up</h4>
+                  <p>Microblading Brows and Touch-up, Combo Brows and Touch up, Lip Blush and Touch-up</p>
+                  <div class="price">from £50 / 3 hrs</div>
+                </div>
+                <div class="flip-back">
+                  <div class="flip-media">
+                    <img src="./assets/makeup.jpg" alt="Make-up" />
+                  </div>
+                  <h4>Permanent Make-up</h4>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="services-cta mt-4">
+          <a class="btn btn-primary" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener noreferrer">Choose your treat</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section section-about" id="about">
+      <div class="container about">
+        <div class="about-content">
+          <h3>About me</h3>
+          <p>My name is Signija and I help women in Bournemouth area feel more confident. I focus on a sensitive approach, high-quality brands and education in simple, sustainable skincare. I speak English and Latvian.</p>
+          <p>I love my job and life in all its ways. I will always greet you with smile, I will put your favourite music on while I’ll be working on your beauty. I warm you with cosy atmosphere, great conversation and dose of humour.</p>
+
+          <div class="badgebar">
+            <span class="pill">Dermalogica Certified</span>
+            <span class="pill">Cruelty-free</span>
+            <span class="pill">Latvian / English</span>
+          </div>
+
+          <div class="about-cta actions mt-3">
+            <a href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book your treat</a>
+            <a href="#contact" class="btn btn-outline">Find studio</a>
+          </div>
+        </div>
+
+        <figure class="about-media">
+          <img src="./assets/signija.jpg" alt="Signiji – Beauty therapist" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-band" id="gallery">
+      <div class="container">
+        <h3>Gallery</h3>
+
+        <div class="slider" data-slider aria-roledescription="carousel">
+          <button type="button" class="slider-btn prev" aria-label="Previous photos">‹</button>
+          <div class="slider-track" data-track>
+            <figure class="slide"><img src="./assets/salon.jpeg" alt="Say Hello Studio" /></figure>
+            <figure class="slide"><img src="./assets/salon1.jpeg" alt="Say Hello Studio" /></figure>
+            <figure class="slide"><img src="./assets/makeup.jpg" alt="Make-up session" /></figure>
+            <figure class="slide"><img src="./assets/lashes5.jpeg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/lashes4.jpeg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/lashes3.jpeg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/lashes2.jpeg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/lashes1.jpeg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/lashes.jpg" alt="Lashes session" /></figure>
+            <figure class="slide"><img src="./assets/eyebrows.jpg" alt="Eyebrows session" /></figure>
+            <figure class="slide"><img src="./assets/eyebrows1.jpeg" alt="Eyebrows session" /></figure>
+            <figure class="slide"><img src="./assets/eyebrows2.jpeg" alt="Eyebrows session" /></figure>
+          </div>
+          <button type="button" class="slider-btn next" aria-label="Next photos">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section section-band" id="reviews">
+      <div class="container">
+        <h3>Reviews</h3>
+        <div class="reviews-widget-card">
+          <div data-rw-slider="48586"></div>
+          <script>
+            (function () {
+              if (document.querySelector('script[src*="rw-widget-slider.js"]')) return;
+              var script = document.createElement("script");
+              script.type = "module";
+              script.src = "https://widgets.revue.us/2.0/rw-widget-slider.js";
+              document.head.appendChild(script);
+            })();
+          </script>
+        </div>
+        <p class="note mt-2">Read more on <a href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole" target="_blank" rel="noopener">Booksy</a>.</p>
+      </div>
+    </section>
+
+    <!-- BOOKING / CONTACT -->
+    <section class="section container" id="booking">
+      <h3>Contact me</h3>
+      <p class="lead">You can book your beauty session online or contact me directly — whatever feels easier for you.</p>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100 p-3">
+            <h4>Book your treat online</h4>
+            <p>The easiest way to plan your beauty session is to book it directly through Booksy.</p>
+            <p>You’ll instantly see available dates and confirm your appointment in just a few clicks.</p>
+            <a class="btn btn-primary" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener noreferrer">Book your treat</a>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="contact-stack d-flex flex-column gap-3 h-100">
+            <article class="card p-3">
+              <h4>WhatsApp</h4>
+              <p>Quick chat, great for questions or sharing photos of your skin/brows.</p>
+              <div class="pill">+44 7xxx xxx xxx</div>
+            </article>
+
+            <article class="card p-3">
+              <h4>E-mail</h4>
+              <p>Tell me what you’re interested in and I’ll propose available dates.</p>
+              <div class="pill">hello@signiji.beauty</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-4">
+          <div class="card p-3">
+            <h4>Form</h4>
+            <form action="#" method="post" onsubmit="event.preventDefault(); alert('Thank you! I’ll get back to you soon.');">
+              <label>Name<br /><input required type="text" name="name" class="input" /></label><br /><br />
+              <label>E-mail<br /><input required type="email" name="email" class="input" /></label><br /><br />
+              <label>Message<br /><textarea name="msg" rows="4" class="input"></textarea></label><br /><br />
+              <button class="btn" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & LOCATION -->
+    <section class="section section-band" id="contact">
+      <div class="container">
+        <h3>Contact & Location</h3>
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="card p-3">
+              <h4>Address</h4>
+              <p>1 Mount Pleasant Road, BH15 1TU, Poole<br />United Kingdom</p>
+
+              <div class="map-embed" aria-label="Map preview of Say Hello Studio location">
+                <iframe src="https://www.google.com/maps?q=1+Mount+Pleasant+Road,+BH15+1TU,+Poole,+United+Kingdom&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-hidden="false"></iframe>
+              </div>
+
+              <a class="btn map-link mt-2" href="https://www.google.com/maps?q=1+Mount+Pleasant+Road,+BH15+1TU,+Poole,+United+Kingdom" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="card p-3">
+              <h4>Opening hours</h4>
+              <p>Mon–Fri 9:00–18:00<br />Sat by appointment</p>
+              <p class="note">Out-of-hours sessions available on request.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="card p-3">
+              <h4>Payments</h4>
+              <p>Cash / QR code</p>
+              <p class="note">A deposit may be required for selected services.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <a href="#home" class="footer-logo" aria-label="Say Hello home">
+          <img src="./assets/logo.png" alt="Say Hello logo" class="footer-logo-img" />
+        </a>
+        <p class="footer-copy mb-0">
+          © <span id="y"></span> Say Hello • Poole, Dorset •
+          <a href="#cookies-policy" class="footer-link">Cookies</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Signiji Beauty",
+        "image": ["https://signiji.beauty/assets/hero.jpg"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Poole",
+          "addressRegion": "Dorset",
+          "addressCountry": "GB"
+        },
+        "email": "hello@signiji.beauty",
+        "telephone": "+44 7xxx xxx xxx",
+        "url": "https://signiji.beauty",
+        "priceRange": "££",
+        "areaServed": "Poole, Bournemouth, Dorset"
+      }
+    </script>
+
+    <!-- MOBILE CTA -->
+    <div class="mobile-cta" role="region" aria-label="Quick booking">
+      <a class="mobile-cta__btn js-booksy" href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite" target="_blank" rel="noopener noreferrer" aria-label="Book a beauty appointment on Booksy">Book your treat</a>
+    </div>
+
+    <!-- Cookies banner -->
+    <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+      <p>We use cookies to improve your experience. <a href="#cookies-policy" class="cookie-link">Learn more</a></p>
+      <div class="cookie-actions">
+        <button class="cookie-btn" data-accept>Accept</button>
+        <button class="cookie-btn ghost" data-decline>Decline</button>
+      </div>
+    </div>
+
+    <!-- Cookie modal -->
+    <div id="cookies-policy" class="cookie-modal" aria-hidden="true">
+      <div class="cookie-modal__dialog" role="document">
+        <button class="cookie-modal__close" type="button" data-close-modal aria-label="Close">✕</button>
+        <h4>Cookies on this site</h4>
+        <p>We use essential cookies to make the site work and analytics cookies to understand usage. You can accept or decline analytics at any time.</p>
+        <p><a href="#contact">Contact us</a> if you have any questions.</p>
+        <div class="cookie-modal__actions">
+          <button class="cookie-btn" data-accept>Accept</button>
+          <button class="cookie-btn ghost" data-close-modal>Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOTSTRAP BUNDLE (for things like dropdowns if needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+  </body>
+</html>

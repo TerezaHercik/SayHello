@@ -1,98 +1,1631 @@
+:root {
+  --brand: #af8b6f;
+  --accent: #e9d8c7;
+  --cta: #e04b3f;
+  --ink: #1e1e1e;
+  --muted: #6b6762;
+  --bg: #fff;
+  --radius: 20px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
 
-/* ====== Full-width & Services center – Patch v2.3 ====== */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue,
+    Arial, sans-serif;
+  line-height: 1.6;
+}
 
-/* 1) Remove side white stripes on mobile/tablet
-   - Sections are full-bleed
-   - Inner .container doesn't add side padding unless we choose to */
-@media (max-width: 1024px){
-  section, .section, .section-band { 
-    width: 100vw; 
-    margin-left: 50%;
-    transform: translateX(-50%);   /* truly edge-to-edge even if parent is centered */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.container {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+/* Top navigation like the reference */
+/* Transparent navigation bar – visible background photo */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #ffffff;
+  transition: background 0.3s ease;
+
+  /* zvětšení výšky lišty */
+  padding: 18px 0;
+}
+
+
+.menu a:hover,
+.menu a:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  outline: 2px solid transparent;
+}
+
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem; /* větší horizontální mezera */
+}
+
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.menu a {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.05rem; /* větší text */
+  line-height: 1;
+  padding: 12px 18px; /* víc prostoru pro kliknutí */
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.06s ease, color 0.2s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  background: rgba(255, 255, 255, 0.14);  /* jemné zvýraznění */
+  outline: 2px solid transparent;
+}
+
+.menu a:active {
+  transform: translateY(1px);
+}
+
+/* Konverzní tlačítko v navigaci */
+.btn-nav {
+  background-color: #e04b3f; /* jasná červená */
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 22px;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.btn-nav:hover,
+.btn-nav:focus-visible {
+  background-color: #c73a30; /* tmavší odstín při hoveru */
+  transform: translateY(-1px);
+}
+
+/* Secondary CTA button – teal */
+.btn.cta {
+  background-color: #2f6f6c; /* sekundární barva */
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+/* --- Animated arrow for the Read more button --- */
+.btn.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #2f6f6c; /* sekundární teal */
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.btn.cta:hover,
+.btn.cta:focus-visible {
+  background-color: #255b58;
+  transform: translateY(-1px);
+}
+
+/* Šipka dolů */
+.arrow-down {
+  display: inline-block;
+  font-size: 1.2em;
+  line-height: 1;
+  animation: bounceArrow 1.8s ease-in-out infinite;
+}
+
+/* Klidné pohupování nahoru a dolů */
+@keyframes bounceArrow {
+  0%, 100% {
+    transform: translateY(0);
   }
-  /* any inner container should not create extra white gutters */
-  :where(section, .section, .section-band) > .container {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    background: transparent !important;
-  }
-  /* provide a tiny safe padding just for readability where needed */
-  :where(#about, #gallery, #contact, #reviews, #booking, #services) :where(h3, p, .note){
-    padding-left: 16px;
-    padding-right: 16px;
+  50% {
+    transform: translateY(5px);
   }
 }
 
-/* 2) Services – fix centering on all devices */
-#services { 
-  padding-left: 0 !important; 
-  padding-right: 0 !important; 
+
+.btn.cta:hover,
+.btn.cta:focus-visible {
+  background-color: #255b58; /* tmavší teal na hover */
+  transform: translateY(-1px);
 }
 
-/* Desktop: 3 columns centered inside a max width */
-@media (min-width: 1025px){
-  #services .grid-3{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 24px;
-    max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
-    justify-items: stretch;
-  }
+.btn.cta:active {
+  transform: translateY(1px);
 }
 
-/* Tablet & mobile: single column, perfectly centered */
-@media (max-width: 1024px){
-  #services .grid-3{
-    display: grid;
+
+
+@media (max-width: 900px) {
+  .nav-inner { padding: 8px 0; }
+  .menu { gap: 8px; }
+  .menu a { padding: 10px 12px; }
+  /* na mobilech ponecháme stejné 70% krytí kvůli čitelnosti */
+}
+
+/* odkazy v horní liště – světle + lepší čitelnost */
+.top-nav a {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.top-nav .menu a {
+  color: #ffffff;
+}
+
+/* NAV bar – ponecháme průhledný, ale zvětšíme ho */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  transition: background 0.3s ease, padding 0.2s ease;
+  padding: 20px 0; /* širší lišta */
+}
+
+/* vnitřek – trocha horizontálního prostoru */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+/* LOGO – větší a se stínem pro čitelnost */
+.logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Jemné, neutrální pozadí pro čitelnost loga nad světlem i tmě: */
+  background: rgba(0, 0, 0, 0.28);  /* pokud máš světlé/bílé logo */
+  border-radius: 12px;
+  padding: 6px 10px; /* „polštářek“ kolem loga */
+}
+
+.logo {
+  height: 80px;      /* klidně změň na 72px, pokud chceš ještě větší */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  /* jemný stín pro čitelnost i bez badge */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45));
+}
+
+/* MENU – zvětšíme písmo i hit-area, CTA vpravo zůstává červené */
+.menu a {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.06rem;
+  line-height: 1;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.06s ease;
+}
+
+.btn-nav { /* Book consultation = primární CTA (červená) */
+  background-color: #e04b3f;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 22px;
+}
+.btn-nav:hover,
+.btn-nav:focus-visible { background-color: #c73a30; transform: translateY(-1px); }
+
+/* RESPONSIVE – menší logo na mobilech, ať nezabere vše */
+@media (max-width: 900px) {
+  .top-nav { padding: 14px 0; }
+  .logo { height: 48px; }
+  .nav-inner { padding: 0 16px; }
+}
+
+
+/* Hero inspired by the screenshot */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  /* posuneme pozadí směrem dolů */
+  background: url('../assets/hero-image.jpg') center 20% / cover no-repeat;
+}
+
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  max-width: 560px;
+  margin-right: 10%;
+  text-align: right;
+}
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-family: "Playfair Display", serif;
+  margin: 0;
+}
+/* Konzistentní šířka webu (stejná pro nav i hero) */
+:root {
+  --site-max: 1100px;
+  --site-gutter: 24px; /* boční odsazení */
+}
+
+.container {
+  max-width: var(--site-max);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+
+/* Hero pozadí – s posunem dolů podle tvého nastavení */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: block; /* obsah zarovnáme přes .hero-inner */
+  background: url('../assets/hero-image.jpg') center 25% / cover no-repeat;
+}
+
+/* NOVĚ: vnitřek hero má stejnou šířku jako nav, a obsah tlačíme doprava */
+.hero-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* nadpis a CTA vpravo, zarovnané s pravým okrajem containeru */
+}
+
+/* Hero text – odstraníme dřívější ruční odsazení/margin-right */
+.hero-content {
+  text-align: right;
+  max-width: 560px;     /* aby řádky nebyly moc dlouhé */
+  margin: 0;            /* důležité: žádný margin-right */
+}
+
+/* (volitelné) na menších displejích centrovat */
+@media (max-width: 900px) {
+  .hero-inner { justify-content: center; }
+  .hero-content { text-align: center; }
+}
+
+.kicker {
+  font-weight: 300;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+.tagline {
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  margin: 26px 0;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.btn {
+  background: var(--cta);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+}
+.btn.ghost {
+  background: transparent;
+  border: 1.8px solid var(--cta);
+  color: var(--cta);
+}
+
+.section {
+  padding: 70px 0;
+}
+.section h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin: 0 0 14px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.pill {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f5efe9;
+  color: #6b5b4b;
+  margin-bottom: 8px;
+}
+.price {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.badgebar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.quote {
+  background: #fff;
+  border-left: 4px solid var(--brand);
+  padding: 18px;
+  border-radius: 14px;
+}
+/* === GALLERY SLIDER === */
+
+/* Šipky */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background .2s ease, transform .1s ease;
+}
+.slider-btn:hover { background: rgba(0,0,0,.5); transform: translateY(-50%) scale(1.03); }
+.slider-btn:active { transform: translateY(-50%) scale(0.98); }
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; 
+}
+
+/* Full-bleed vizuál sekce zachováme přes .section-band (už máš) */
+#gallery.section-band { background-color: #f3ece6 !important; }
+
+/* Mobil: menší šipky, větší tečky pro dotyk */
+@media (max-width: 900px) {
+  .slider-btn { width: 38px; height: 38px; }
+  .slider-dots button { width: 10px; height: 10px; }
+}
+
+
+
+.footer {
+  background: #1e1b18;
+  color: #eee;
+  padding: 40px 0;
+  margin-top: 50px;
+}
+.footer a {
+  color: #eee;
+  text-decoration: underline;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Nastavení velikosti a poměru loga */
+.logo {
+  height: 48px;            /* můžeš upravit podle výšky nav-baru */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Volitelně – pokud chceš trochu více prostoru kolem loga */
+.brand {
+  padding-left: 1rem;
+}
+
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  box-shadow: var(--shadow);
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e8dfd8;
+}
+
+@media (max-width: 900px) {
+  .about {
     grid-template-columns: 1fr;
-    gap: 20px;
-    justify-items: center;          /* center the card wrapper */
-    padding-left: 16px;             /* tiny breathing room so shadows aren't cut */
-    padding-right: 16px;
   }
-  #services .grid-3 > *{
-    width: min(680px, 100%);        /* centered readable width */
-    margin: 0 auto;
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-/* Make sure cards themselves don't push right with margins */
-#services .grid-3 > .card{
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+/* --- LOGO: velikost + zrušení omezení z globálních img pravidel --- */
+.logo {
+  height: 112px;           /* zvětši klidně na 96–112px, jak se ti líbí */
+  width: auto;
+  max-width: none;        /* nenech omezit šířkou kontejneru */
+  border-radius: 0;       /* ať se neaplikuje globální zaoblení na img */
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); /* jemná čitelnost */
 }
 
-/* 3) Ensure other full-width bands truly fill screen */
-.section-band { 
-  width: 100vw;
-  margin-left: 50%;
+/* větší „lišta“, ať má logo prostor */
+.top-nav {
+  padding: 22px 0;        /* zvětší výšku nav-baru */
+  overflow: visible;      /* jistota, že nic nebude useknuté */
+}
+
+/* víc místa zleva i mezi prvky */
+.nav-inner {
+  padding: 0 28px;
+  gap: 24px;
+}
+
+/* když je logo na mobilu moc velké, zmenšíme ho */
+@media (max-width: 900px) {
+  .logo { height: 56px; }
+  .top-nav { padding: 14px 0; }
+}
+
+/* --- FORCE CENTER CTA --- */
+.services-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px !important;
+}
+@media (max-width: 900px) {
+  .services-cta { margin-top: 36px !important; }
+}
+
+.btn-primary {
+  display: inline-flex;              /* lépe pro centrování textu */
+  justify-content: center;
+  align-items: center;
+  background-color: #e04b3f;         /* primární červená */
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;                    /* zajistí přesné vertikální vyrovnání */
+  padding: 14px 36px;
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;               /* neumožní zalomení textu */
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: #c73a30;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+/* Force center for Services CTA (outside grid) */
+#services .services-cta{
+  display: grid !important;
+  place-items: center !important; /* horizontálně i vertikálně */
+  width: 100%;
+  margin-top: 50px;
+}
+#services .services-cta .btn-primary{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto !important;
+  float: none;               /* kdyby něco tlačilo doleva */
+}
+/* CTA reveal při zobrazení */
+.services-cta { 
+  opacity: 0; 
+  transform: translateY(12px); 
+  transition: opacity .5s ease, transform .5s ease; 
+}
+.services-cta.reveal-in { 
+  opacity: 1; 
+  transform: none; 
+}
+
+/* mikro-feedback při kliku */
+.btn-primary.is-clicked { 
+  transform: scale(0.98); 
+}
+/* Hide by default (desktop) */
+.mobile-cta { display: none; }
+
+/* Mobile sticky CTA */
+@media (max-width: 900px) {
+  /* Rezerva nad spodní hranou, aby CTA nepřekrývalo obsah */
+  body { padding-bottom: 84px; }
+
+  .mobile-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: block;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); /* iPhone safe area */
+    background: rgba(20, 20, 20, 0.6); /* lehké ztmavení podkladu */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .mobile-cta__btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #e04b3f;       /* primární červená */
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    line-height: 1;
+    padding: 16px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(224, 75, 63, 0.35);
+    transition: transform .12s ease, background .25s ease;
+  }
+  .mobile-cta__btn:focus-visible,
+  .mobile-cta__btn:hover { background: #c73a30; transform: translateY(-1px); }
+  .mobile-cta__btn:active       { transform: translateY(1px); }
+}
+/* Footer layout */
+.footer {
+  background: #1e1b18;
+  color: #eee;
+  padding: 24px 0;
+  font-size: 0.95rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* centrované vše na střed */
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.footer-copy {
+  margin: 0;
+}
+
+.footer-link {
+  color: #eee;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #e9d8c7; /* světlejší odstín */
+}
+/* --- Cookies banner --- */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
   transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(30, 27, 24, 0.95);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: none;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 90%;
 }
-.section-band > .container{ 
-  max-width: 1140px; 
-  margin: 0 auto; 
-  padding-left: 0; 
-  padding-right: 0; 
+
+.cookie-banner p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.cookie-btn {
+  background: #e04b3f;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.cookie-btn:hover { background: #c73a30; transform: translateY(-1px); }
+
+.cookie-link {
+  color: #e9d8c7;
+  text-decoration: underline;
+}
+/* === Flip Card Effect === */
+.flip-card {
+  perspective: 1000px; /* hloubka perspektivy */
+  border: none;
+  background: transparent;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Přední a zadní strana */
+.flip-front,
+.flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+
+/* Přední strana – aktuální textová karta */
+.flip-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Zadní strana – fotka s nadpisem */
+.flip-back {
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid var(--accent);
+  text-align: center;
+}
+
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.flip-back h4 {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  color: #1e1b18;
+  background: rgba(255,255,255,0.8);
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Volitelné vylepšení */
+.flip-card:hover .flip-back img {
+  opacity: 1;
+}
+/* ===== Flip cards — FIX ===== */
+
+/* Zruš default .card pro flip variantu */
+.card.flip-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: 0;
+}
+
+.grid-3 .flip-card { aspect-ratio: 4 / 3; } 
+
+/* Perspektiva a „plátno“ pro flip */
+.flip-card {
+  position: relative;
+  perspective: 1000px;
+}
+
+/* Vnitřek vyplní celou kartu a bude se otáčet */
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s ease;
+}
+
+/* Aktivace flipu */
+.flip-card:hover .flip-inner { transform: rotateY(180deg); }
+
+/* Obě strany přesně na sebe */
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Přední strana – původní obsah karty */
+.flip-front {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Zadní strana – fotka + nadpis */
+.flip-back {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 2px solid var(--accent);
+  display: grid;                 /* nově: centrování obsahu */
+  place-items: center;           /* zacentruje fotku */
+  padding: 12px;                 /* „pasparta“ okolo fotky */
+}
+
+
+/* Fotka vyplní zadní stranu */
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;           /* klíčová změna: žádný ořez */
+  object-position: center;
+  background: #fff;              /* proti prosvítání */
+  border-radius: 10px;
+  box-shadow: 0 1px 8px rgba(0,0,0,.04);
+}
+
+
+/* Titulek na fotce */
+/* Změň styl titulku na běžný blok pod fotkou */
+.flip-back h4 {
+  position: static;              /* dříve absolute */
+  margin: 10px 0 0;
+  padding: 0;
+  background: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #1e1b18;
+  text-align: center;
+}
+
+
+/* Mobile fallback: bez hoveru nech frontu */
+@media (hover: none) and (pointer: coarse) {
+  .flip-card:hover .flip-inner { transform: none; }
+}
+/* Flip card – ať má jasný rozměr (vyber si jeden řádek) */
+.grid-3 .flip-card { aspect-ratio: 4 / 3; }   /* doporučuji */
+ /* .grid-3 .flip-card { height: 320px; }     // alternativa */
+
+/* Zruš původní .card vzhled u flipu */
+.card.flip-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: 0;
+  position: relative;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .75s ease;
+}
+.flip-card:hover .flip-inner { transform: rotateY(180deg); }
+
+/* Strany karty */
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.flip-front {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ZADNÍ STRANA – rám + layout do sloupce */
+.flip-back {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 2px solid var(--accent);  /* viditelný rámeček */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+}
+
+/* Wrapper pro obrázek – drží poměr a nevystřihuje */
+.flip-media {
+  width: 100%;
+  height: 100%;
+  max-height: 80%;                 /* necháme místo pro titulek */
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* Obrázek: celý dovnitř bez řezu */
+.flip-media img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;             /* KLÍČOVÉ – žádný ořez */
+  object-position: center;
+  display: block;
+}
+
+/* Titulek pod fotkou (nepřekrývá) */
+.flip-back h4 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: #1e1b18;
+  text-align: center;
+}
+
+/* Mobile hover fallback */
+@media (hover: none) and (pointer: coarse) {
+  .flip-card:hover .flip-inner { transform: none; }
+}
+/* --- FLIP BACK: úprava pro celé fotky --- */
+.flip-back {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 2px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow: visible !important; /* 💡 necháme fotku přesáhnout */
+}
+
+/* Wrapper pro fotku */
+.flip-media {
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  overflow: visible;             /* 💡 zruší ořez */
+}
+
+/* Fotka — zobrazit celou, žádný crop */
+.flip-media img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;           /* zachová celý obsah */
+  object-position: center;
+  border-radius: 12px;
+}
+
+/* Titulek */
+.flip-back h4 {
+  margin-top: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: #1e1b18;
+  text-align: center;
+}
+/* === ABOUT ME SECTION === */
+#about {
+  background-color: #f3ece6; /* o něco tmavší než bílá */
+  color: #1c1a18;            /* měkčí tmavý text */
+  padding: 80px 0;           /* dost prostoru kolem */
+}
+
+/* Nadpis a podnadpis */
+#about h3 {
+  color: #1c1a18;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#about p {
+  color: #2a2725;
+  line-height: 1.7;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Pokud máš v sekci tlačítko nebo odkaz */
+#about a,
+#about .btn {
+  background-color: #2f6f6c; /* sekundární teal kontrastní na béžovém podkladu */
+  color: #fff;
+}
+#about a:hover,
+#about .btn:hover {
+  background-color: #255b58;
+}
+/* CTA blíž ke kartám */
+.services-cta {
+  margin-top: 24px !important;   /* bylo víc */
+  margin-bottom: 28px !important; /* malá rezerva nad další sekcí */
+}
+
+/* obecná svislá mezera mezi sekcemi (pokud ji nemáš) */
+.section + .section {
+  margin-top: 48px;
+}
+/* full-bleed pás pro About me */
+.section-about {
+  background: #f3ece6;     /* o chlup tmavší než Services */
+  color: #1c1a18;
+  padding: 72px 0;         /* svislé odsazení pásu */
+}
+
+/* vnitřní layout zůstává v containeru */
+.about-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+}
+
+/* texty na novém pozadí */
+#about h3 { color: #1c1a18; }
+#about p  { color: #2a2725; line-height: 1.7; }
+
+/* CTA uvnitř About – zachovat původní vzhled */
+#about .btn-primary { background:#e04b3f; }
+#about .btn-primary:hover { background:#c73a30; }
+#about .btn-secondary { background:#2f6f6c; }
+#about .btn-secondary:hover { background:#255b58; }
+
+/* bezpečná rezerva kvůli sticky navigaci při skrolování na #about */
+#about { scroll-margin-top: 84px; }
+/* === CTA BUTTONS in ABOUT SECTION === */
+#about .btn-primary {
+  background-color: #e04b3f;      /* červená – hlavní CTA */
+  color: #fff;
+  border: 2px solid #e04b3f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 36px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+#about .btn-primary:hover,
+#about .btn-primary:focus-visible {
+  background-color: #c73a30;
+  border-color: #c73a30;
+  transform: translateY(-2px);
+}
+
+/* Sekundární – bílé s červeným okrajem */
+#about .btn-outline {
+  background-color: transparent;
+  color: #e04b3f;
+  border: 2px solid #e04b3f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 36px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+#about .btn-outline:hover,
+#about .btn-outline:focus-visible {
+  background-color: #e04b3f;
+  color: #fff;
+  transform: translateY(-2px);
+}
+/* === Unified background for lower sections === */
+#about,
+#gallery,
+#contact {
+  background-color: #f3ece6; /* stejný tón jako About me */
+  color: #1c1a18;
+}
+
+/* sjednocení nadpisů a textů */
+#about h3,
+#gallery h3,
+#contact h3 {
+  color: #1c1a18;
+  font-family: 'Playfair Display', serif;
+}
+
+#about p,
+#gallery p,
+#contact p {
+  color: #2a2725;
+  line-height: 1.7;
+}
+
+/* jemné oddělení sekcí – aby vizuálně navazovaly, ale měly vzduch */
+#about,
+#gallery,
+#contact {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section + .section {
+  margin-top: 0; /* odstraní tvrdý přechod mezi nimi */
+}
+/* === Unified background for lower sections === */
+#about,
+#gallery,
+#contact {
+  background-color: #f3ece6; /* stejný tón jako About me */
+  color: #1c1a18;
+}
+
+/* sjednocení nadpisů a textů */
+#about h3,
+#gallery h3,
+#contact h3 {
+  color: #1c1a18;
+  font-family: 'Playfair Display', serif;
+}
+
+#about p,
+#gallery p,
+#contact p {
+  color: #2a2725;
+  line-height: 1.7;
+}
+
+/* jemné oddělení sekcí – aby vizuálně navazovaly, ale měly vzduch */
+#about,
+#gallery,
+#contact {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section + .section {
+  margin-top: 0; /* odstraní tvrdý přechod mezi nimi */
+}
+#about {
+  background: linear-gradient(to bottom, #f8f5f2 0%, #f3ece6 100%);
+}
+/* === Full-bleed pás pro About / Gallery / Contact === */
+.section-band {
+  /* full-bleed přes celou šířku */
+  width: 100%;
+  background-color: #f3ece6;  /* stejný tón jako About me */
+  color: #1c1a18;
+  padding: 80px 0;            /* svislé odsazení pásu */
+}
+
+/* sjednocené textové styly, aby to vypadalo přesně jako About me */
+.section-band h3 {
+  color: #1c1a18;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+.section-band p {
+  color: #2a2725;
+  line-height: 1.7;
+}
+
+/* přechod mezi sekcemi beze „schodu“ */
+.section + .section { margin-top: 0; }
+
+/* jistota: pokud někde zůstal background na .section/.container, přepiš ho */
+.section.section-band,
+.section-band .container {
+  background: transparent !important;
+}
+/* FULL-BLEED pás: přepiš cokoliv bílého pozadí */
+.section.section-band {
+  background-color: #f3ece6 !important;   /* stejné jako About me */
+  color: #1c1a18;
+  padding: 80px 0;
+}
+
+/* jistota: žádné lokální pozadí uvnitř containeru */
+.section.section-band > .container {
   background: transparent !important;
 }
 
-/* 4) Footer centered & full width on all breakpoints */
-footer.footer{
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
+/* sjednocení nadpisů/textů na pásu */
+.section.section-band h3 { 
+  color: #1c1a18;
+  font-family: 'Playfair Display', serif;
 }
-.footer .container{
-  max-width: 1140px;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
+.section.section-band p { 
+  color: #2a2725; 
+  line-height: 1.7; 
 }
-.footer-inner{ justify-content: center; text-align: center; }
+
+/* odstranit nežádoucí mezery mezi pásy */
+.section + .section { margin-top: 0; }
+/* === Full-width pás === */
+.section-band {
+  background-color: #f3ece6 !important;
+  color: #1c1a18;
+  padding: 80px 0;
+}
+.section-band > .container { background: transparent !important; }
+
+/* === GALLERY multi-item slider === */
+.slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+.slide {
+  flex: 0 0 calc((100% - 3 * 16px) / 4);
+  scroll-snap-align: start;
+  margin: 0;
+}
+.slide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  background: #fff;
+}
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px; height: 42px;
+  border: none; border-radius: 50%;
+  background: rgba(0,0,0,.35);
+  color: #fff; font-size: 22px;
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .2s ease, transform .1s ease;
+  z-index: 2;
+}
+.slider-btn:hover { background: rgba(0,0,0,.5); transform: translateY(-50%) scale(1.03); }
+.slider-btn:active { transform: translateY(-50%) scale(.98); }
+.slider-btn.prev { left: 8px; }
+.slider-btn.next { right: 8px; }
+
+/* responsive breakpoints */
+@media (max-width: 900px) {
+  .slide { flex: 0 0 calc((100% - 16px) / 2); }
+  .slide img { height: 220px; }
+}
+@media (max-width: 560px) {
+  .slide { flex: 0 0 100%; }
+  .slide img { height: 56vw; }
+}
+/* === GALLERY multi-item slider (4 on desktop, 2 tablet, 1 mobile) === */
+#gallery.section-band {
+  background-color: #f3ece6 !important;
+  color: #1c1a18;
+  padding: 80px 0;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 2px 20px rgba(0,0,0,.08);
+}
+#gallery .slider       { position: relative; }
+#gallery .slider-track { position: relative; z-index: 1; }
+#gallery .slider-btn   { z-index: 5; pointer-events: auto; }
+
+
+.slider-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 12px;
+}
+
+.slide {
+  flex: 0 0 calc((100% - 3 * 16px) / 4);
+  scroll-snap-align: start;
+}
+
+.slide img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* šipky */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px; height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .2s ease, transform .1s ease;
+  z-index: 2;
+}
+.slider-btn:hover { background: rgba(0,0,0,.5); transform: translateY(-50%) scale(1.05); }
+.slider-btn.prev { left: 8px; }
+.slider-btn.next { right: 8px; }
+
+/* responzivní zobrazení */
+@media (max-width: 900px) {
+  .slide { flex: 0 0 calc((100% - 16px) / 2); }
+  .slide img { height: 220px; }
+}
+@media (max-width: 560px) {
+  .slide { flex: 0 0 100%; }
+  .slide img { height: 60vw; }
+}
+/* Slider layering so arrows get the click */
+#gallery .slider { position: relative; }
+#gallery .slider-track { position: relative; z-index: 1; }
+#gallery .slider-btn {
+  z-index: 5;                /* nad trackem */
+  pointer-events: auto;      /* jistota, že berou klik */
+}
+/* === NAV shrink on scroll === */
+.top-nav.scrolled {
+  background: rgba(0, 0, 0, 0.65); /* o něco výraznější pozadí */
+  padding: 10px 0;                 /* zmenšená výška */
+  transition: all 0.3s ease;
+}
+
+.top-nav.scrolled .logo {
+  height: 60px;                    /* menší logo */
+  transition: height 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .top-nav.scrolled {
+    padding: 8px 0;
+  }
+  .top-nav.scrolled .logo {
+    height: 46px;
+  }
+}
+
+/* Contact map */
+#contact .map-embed{
+  margin-top:12px;
+  border-radius:16px;
+  overflow:hidden;
+  aspect-ratio:16/9;               /* responzivní plocha */
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  background:#fff;
+}
+#contact .map-embed iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+#contact .map-link{
+  margin-top:12px;
+  display:inline-block;
+  font-weight:700;
+  border-radius:999px;
+  padding:10px 18px;
+  background:#e04b3f;              /* červené CTA (konzistentní s webem) */
+  color:#fff;
+  transition:background .25s ease, transform .1s ease;
+}
+#contact .map-link:hover,
+#contact .map-link:focus-visible{
+  background:#c73a30;
+  transform:translateY(-2px);
+}
+/* Card styl kolem widgetu */
+.reviews-widget-card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow: var(--shadow);
+  padding:14px;
+  overflow:hidden;
+}
+
+/* drobná typografická konzistence nadpisu v sekci */
+#reviews h3{ margin-bottom: 14px; }
+/* =========================================================
+   ALTERNATING BACKGROUNDS (override starších pravidel)
+   VLOŽIT NA KONEC SOUBORU
+   About → #f3ece6, Gallery → #faf8f7, Contact → #e9dfd7
+========================================================= */
+
+/* základ – ponecháváme jednotné odsazení sekcí v pásu */
+.section-band {
+  padding: 80px 0;
+  color: #1e1b18;
+}
+
+/* ABOUT ME */
+#about,
+#about.section-band {
+  background: #f3ece6 !important;
+  color: #1e1b18;
+}
+#about h3 { color: #1e1b18; }
+#about p  { color: #2a2725; line-height: 1.7; }
+
+/* GALLERY (světlejší tón) */
+#gallery,
+#gallery.section-band {
+  background: #faf8f7 !important;
+  color: #1e1b18;
+}
+#gallery h3 { color: #1e1b18; }
+#gallery p  { color: #2a2725; line-height: 1.7; }
+
+/* CONTACT & LOCATION (o chlup sytější béžová) */
+#contact,
+#contact.section-band {
+  background: #e9dfd7 !important;
+  color: #1e1b18;
+}
+#contact h3 { color: #1e1b18; }
+#contact p  { color: #2a2725; line-height: 1.7; }
+
+/* plynulý přechod mezi pásy bez mezer navíc */
+.section + .section { margin-top: 0; }
+.section.section-band > .container { background: transparent !important; }
+
+/* bezpečný offset kvůli sticky navigaci při skrolu na kotvy */
+#about, #gallery, #contact { scroll-margin-top: 84px; }
+/* === Reviews: vlastní pozadí (odlišné od Contact) === */
+#reviews,
+#reviews.section-band {
+  background: #f7f2ee !important;   /* jemný, ale JINÝ tón než #e9dfd7 u Contact */
+  color: #1e1b18;
+  padding: 80px 0;                  /* stejné svislé odsazení jako ostatní pásy */
+}
+
+/* konzistence typografie uvnitř Reviews */
+#reviews h3 { color: #1e1b18; }
+#reviews p  { color: #2a2725; line-height: 1.7; }
+
+/* bezpečný offset kvůli sticky nav při skoku na kotvu */
+#reviews { scroll-margin-top: 84px; }
+
+/* === CONTACT: Google Maps CTA (white background like card) === */
+#contact .map-link {
+  margin-top: 12px;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 10px 22px;
+  border: 2px solid #e04b3f;   /* červený okraj */
+  background: #fff;            /* stejná barva jako card */
+  color: #e04b3f;              /* text červený */
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* jemný stín jako u karty */
+}
+
+#contact .map-link:hover,
+#contact .map-link:focus-visible {
+  background: #e04b3f;          /* červené vyplnění */
+  color: #fff;                  /* bílý text */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(224,75,63,0.3);
+}
+/* druhý sloupec: WhatsApp + Email pod sebou */
+.contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* mezera mezi kartami */
+}
+
+/* na mobilech se grid-3 už u tebe skládá do 1 sloupce – nic víc netřeba */
+/* === CONTACT ME SECTION – equal height columns & aligned CTAs === */
+
+/* Rodičovský grid – všechny 3 sloupce stejně vysoké */
+#booking .grid-3 {
+  align-items: stretch; /* všechny stejně vysoké */
+}
+
+/* Každá karta vyplní dostupnou výšku */
+#booking .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+/* Text nahoře, CTA vždy dole */
+#booking .card .btn,
+#booking .card form button {
+  margin-top: auto; /* tlačítko dolů */
+}
+
+/* Kontakt stack – zachovat gap mezi dvěma kartami */
+#booking .contact-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 1.25rem;
+  height: 100%;
+}
+
+/* Každá vnořená karta v contact-stack má stejný vzhled */
+#booking .contact-stack .card {
+  flex: 1; /* obě vyplní výšku rovnoměrně */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* CTA Book your treat vizuálně sladěná se Send */
+#booking .btn-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* responzivní zobrazení – mobile = jedna pod druhou */
+@media (max-width: 900px) {
+  #booking .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  #booking .card {
+    height: auto;
+  }
+}
