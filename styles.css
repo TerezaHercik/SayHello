@@ -1924,3 +1924,86 @@ p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
 
 /* 12) Bezpečné odsazení nad kotevními sekcemi (kvůli fixed nav) */
 #about, #gallery, #contact, #booking, #services, #reviews { scroll-margin-top: 84px; }
+/* === Mobile nav drawer === */
+.menu-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+  z-index: 9998;
+  opacity: 0; transition: opacity .2s ease;
+}
+.menu-overlay.open { opacity: 1; }
+
+.mobile-menu {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(92vw, 360px);
+  background: #1e1b18; color: #fff;
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  padding: 20px;
+  box-shadow: -16px 0 32px rgba(0,0,0,.25);
+}
+.mobile-menu.open { transform: translateX(0); }
+
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.mobile-menu a { display: block; padding: 12px 14px; border-radius: 10px; text-decoration: none; color: #fff; font-weight: 700; }
+.mobile-menu a:hover, .mobile-menu a:focus-visible { background: rgba(255,255,255,.08); }
+.mobile-menu .btn-nav { background: #e04b3f; text-align: center; border-radius: 999px; }
+
+@media (min-width: 901px) {
+  .menu-overlay, .mobile-menu, .mobile-controls { display: none !important; }
+}
+
+@media (max-width: 900px) {
+  .mobile-controls { display: inline-flex; align-items: center; gap: 10px; }
+  .menu-desktop { display: none !important; }
+
+  /* pořadí: logo (už máš vlevo), pak CTA, pak "Menu"+hamburger */
+  .nav-inner { gap: 12px; }
+  .btn-nav--mobile { font-weight: 800; padding: 10px 14px; }
+  .hamburger { display: inline-flex; align-items: center; gap: 8px; }
+}
+/* === Cookie banner: bottom-centered, responsive === */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(12px, 2.5vw, 20px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(30,27,24,0.95);
+  color: #fff;
+  border-radius: 14px;
+  padding: 12px 16px;
+  width: min(680px, calc(100% - 24px));
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.cookie-banner p { margin: 0; font-size: 0.95rem; }
+
+.cookie-link {
+  color: #e9d8c7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-btn--accept {
+  background: #2f6f6c;          /* zelená/teal */
+  color: #fff;
+  border: 0;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: transform .1s ease, background .25s ease;
+}
+.cookie-btn--accept:hover,
+.cookie-btn--accept:focus-visible { background: #255b58; transform: translateY(-1px); }
+
+@media (max-width: 560px) {
+  .cookie-banner { flex-direction: column; align-items: stretch; text-align: left; }
+  .cookie-btn--accept { width: 100%; }
+}

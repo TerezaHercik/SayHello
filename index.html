@@ -17,26 +17,64 @@
     <script defer src="./main.js"></script>
   </head>
   <body>
+    
     <!-- NAV -->
-    <header class="top-nav" role="navigation" aria-label="Primary">
-      <div class="container nav-inner">
-        <a class="brand" href="#home" aria-label="Say Hello — home">
-          <span class="logo-wrap">
-            <img src="./assets/logo.png" alt="Say Hello logo" class="logo" />
-          </span>
-        </a>
+<header class="top-nav" role="navigation" aria-label="Primary">
+  <!-- Mobile menu & overlay (může zůstat uvnitř headeru) -->
+  <div id="menuOverlay" class="menu-overlay" hidden></div>
 
-        <nav>
-          <ul class="menu">
-            <li><a href="#about">About me</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#pricing">Prices</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#booking" class="btn-nav">Book your treat</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <nav id="mobileMenu" class="mobile-menu" hidden aria-label="Mobile">
+    <ul>
+      <li><a href="#about">About me</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Prices</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#booking" class="btn-nav">Book your treat</a></li>
+    </ul>
+  </nav>
+
+  <div class="container nav-inner">
+    <!-- Logo -->
+    <a class="brand" href="#home" aria-label="Say Hello — home">
+      <span class="logo-wrap">
+        <img src="./assets/logo.png" alt="Say Hello logo" class="logo" />
+      </span>
+    </a>
+
+    <!-- Mobile controls: CTA + hamburger -->
+    <div class="mobile-controls">
+      <a
+        class="btn-nav btn-nav--mobile"
+        href="https://booksy.com/en-gb/165038_say-hello-beauty-studio_brows-lashes_1149415_poole?do=invite"
+        target="_blank" rel="noopener noreferrer"
+      >Book your treat</a>
+
+      <button
+        id="menuToggle"
+        class="hamburger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        aria-label="Open menu"
+      >
+        <span class="hamburger-label">Menu</span>
+        <span class="hamburger-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Desktop menu (jen jedna verze) -->
+    <nav class="menu-desktop" aria-label="Primary desktop">
+      <ul class="menu">
+        <li><a href="#about">About me</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Prices</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#booking" class="btn-nav">Book your treat</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
     <!-- HERO -->
     <section class="hero" id="home" aria-label="Hero section">
