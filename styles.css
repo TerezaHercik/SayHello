@@ -2066,3 +2066,34 @@ p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
   margin: 0;
   width: 100%;
 }
+/* --- NAVIGATION LAYOUT FIX --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* Zmenšit šířku CTA, aby se vešlo i menu */
+.btn-nav {
+  padding: 12px 20px;
+  min-width: 180px;
+}
+
+/* Specificky pro mobily */
+@media (max-width: 480px) {
+  .navbar {
+    justify-content: space-around; /* rozumnější rozestup */
+    padding: 0 0.5rem;
+  }
+
+  .btn-nav {
+    min-width: 160px; /* menší, ale stále 1 řádek */
+    font-size: 0.95rem;
+  }
+
+  /* tlačítko menu – ať má rezervu od okraje */
+  .menu-toggle {
+    margin-left: 8px;
+  }
+}
