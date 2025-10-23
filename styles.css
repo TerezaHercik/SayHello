@@ -1673,16 +1673,23 @@ a {
 .hamburger-bars::before { top: -5px; } .hamburger-bars::after { bottom: -5px; }
 
 /* mobile CTA button */
+/* NAV CTA — vždy na jeden řádek (desktop i mobil) */
+.btn-nav,
 .btn-nav--mobile {
-  background: #e04b3f;
-  color: #fff;
-  padding: 8px 12px;
-  font-weight: 700;
-  border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
+  justify-content: center;
+  white-space: nowrap;      /* nezalamovat */
+  line-height: 1;
+  padding: 14px 24px;       /* o chlup širší vnitřek */
+  min-width: 220px;         /* širší „pilulka“ pro delší text */
 }
+
+/* extra rezerva pro menší telefony */
+@media (max-width: 390px) {
+  .btn-nav--mobile { min-width: 240px; }
+}
+
 
 /* show mobile-controls on small screens and position next to logo */
 @media (max-width: 900px) {
@@ -2006,4 +2013,56 @@ p, li { font-size: clamp(0.98rem, 1.5vw, 1.05rem); }
 @media (max-width: 560px) {
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: left; }
   .cookie-btn--accept { width: 100%; }
+}
+/* NAV CTA — vždy na jeden řádek (desktop i mobil) */
+.btn-nav,
+.btn-nav--mobile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;        /* NEZALAMOVAT */
+  line-height: 1;             /* pevná výška textu */
+  padding: 14px 22px;         /* víc místa kolem textu */
+  min-width: 188px;           /* dost prostoru pro "Book your treat" */
+}
+
+/* na menších mobilech může být o chlup širší */
+@media (max-width: 390px) {
+  .btn-nav--mobile { min-width: 200px; }
+}
+
+/* Cookies: zelené Accept – pokrývá obě varianty tříd */
+.cookie-btn--accept,
+#accept-cookies {
+  background: #2f6f6c !important;   /* zelená/teal */
+  color: #fff !important;
+  border: 0;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 10px 16px;
+  transition: transform .1s ease, background .25s ease;
+}
+.cookie-btn--accept:hover,
+.cookie-btn--accept:focus-visible,
+#accept-cookies:hover,
+#accept-cookies:focus-visible {
+  background: #255b58 !important;
+  transform: translateY(-1px);
+}
+/* Footer: plné centrování textu i prvků */
+.footer { 
+  text-align: center; 
+}
+
+.footer-inner {
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* zajistí pěkné řádkování a centrování textové části */
+.footer-copy {
+  margin: 0;
+  width: 100%;
 }
