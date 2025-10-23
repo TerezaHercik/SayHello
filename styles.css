@@ -1889,7 +1889,6 @@ a {
   }
 
 
-
 /* Fix pro iOS Safari, kde vh bývá nespolehlivé */
 @supports (-webkit-touch-callout: none) {
   .hero {
@@ -1907,6 +1906,7 @@ a {
     padding: 0 !important;         /* jistota, že nic nepřidává výšku */
   }
 }
+
 
 /* Pro jistotu i extra malá zařízení */
 @media (max-width: 768px) {
@@ -1943,3 +1943,163 @@ a {
 }
 /* ==================================================================== */
 
+/* ============ Say Hello – Responsive Fix Pack v2.0 ============
+   1) HERO menší na mobilu/tabletu (je vidět další sekce)
+   2) Sekce full-bleed (barva přes celou šířku displeje)
+   3) Services: 3 sloupce na desktopu, na mobilech/tabletech pod sebou a vystředěné
+   4) Reviews: na mobilech/tabletech horizontální obdélníky, nižší výška, větší šířka
+   5) Footer: obsah na střed na všech breakpointech
+   -------------------------------------------------------------- */
+
+:root{
+  --page-gutter: clamp(16px, 5vw, 28px);
+  --content-max: 1140px;
+}
+
+/* 0) Globál */
+html, body { overflow-x: hidden; }
+
+/* Sekce přes celou šířku; bez „rámečku“ */
+section, .section, .band, .block {
+  width: 100%;
+  margin: 0;
+  border-radius: 0 !important;
+  background-clip: content-box;
+}
+
+/* Vnitřní kontejnery – obsah zarovnaný na střed */
+section > .container,
+.section > .container,
+section > .wrap, .section > .wrap,
+section > .inner, .section > .inner,
+section > .content, .section > .content,
+.container.section-inner{
+  max-width: min(var(--content-max), 100% - 2*var(--page-gutter));
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+/* 1) HERO – menší na mobilech/tabletech, ukázat další sekci */
+.hero { position: relative; }
+.hero::after{
+  content:"";
+  position:absolute; inset:auto 0 0 0;
+  height:48px; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.12) 100%);
+}
+
+@media (max-width: 600px){
+  .hero{
+    height:auto !important;
+    min-height:72svh !important;                   /* ~70 % displeje */
+    padding-top: clamp(68px, 10vh, 96px) !important;/* rezerva pod fixní nav */
+    padding-bottom:16px !important;
+  }
+  .hero .hero-inner{ align-items:flex-end; padding-bottom:8px; }
+  .hero h1{ font-size:clamp(28px, 6.5vw, 36px); line-height:1.1; }
+  .hero .tagline{ font-size:clamp(16px, 4.2vw, 18px); }
+}
+
+@media (min-width: 601px) and (max-width: 1024px){
+  .hero{
+    height:auto !important;
+    min-height:80svh !important;                   /* trochu vyšší než mobil */
+    padding-top: clamp(80px, 9vh, 110px) !important;
+    padding-bottom:18px !important;
+  }
+}
+
+/* 2) Jednotná šířka obsahu + bezpečné okraje na mobilech/tabletech */
+@media (max-width: 1024px){
+  :where(body, main, .page, section, .section){
+    padding-inline: var(--page-gutter);
+  }
+  :where(.card, .feature, .service-card, .price-card){
+    margin-inline: 0;
+    width: auto;
+  }
+  :where(.band, .strip, .section-band){ padding-inline:0; overflow-x: clip; }
+}
+
+/* 3) SERVICES GRID – 3 sloupce desktop, jinak 1 sloupec a na střed */
+#services .cards,
+#services .grid,
+.services .cards,
+.services .grid,
+.section-services .grid,
+.services-list{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap: clamp(16px, 2.2vw, 28px);
+  justify-items:stretch;
+  align-items:stretch;
+  max-width: var(--content-max);
+  margin-inline:auto;
+}
+#services, .services, .section-services{ text-align:center; }
+#services .cards > *,
+#services .grid > *,
+.services .cards > *,
+.services .grid > *,
+.services-list > *{ text-align:left; }
+
+@media (max-width: 1024px){
+  #services .cards,
+  #services .grid,
+  .services .cards,
+  .services .grid,
+  .section-services .grid,
+  .services-list{
+    grid-template-columns:1fr;                /* pod sebe */
+    max-width:min(var(--content-max), 100%);
+  }
+  #services .cards > *,
+  #services .grid > *,
+  .services .cards > *,
+  .services .grid > *,
+  .services-list > *{
+    margin-inline:auto;                       /* vystředění */
+    width:min(680px, 100%);                   /* pohodlná šířka */
+  }
+}
+
+/* 4) REVIEWS (Booksy) – horizontální karty na mobilech/tabletech
+   POZN: pokud Booksy jede v <iframe>, vnitřek neovlivníme.
+   To níže ale aspoň zlepší obal/iframe. */
+.reviews .slider, .reviews .carousel, .reviews-list{
+  display:flex; gap:clamp(12px, 2vw, 16px);
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  padding-inline: var(--page-gutter);
+}
+.reviews .review, .reviews .review-card, .reviews-list > *{
+  flex:0 0 auto; scroll-snap-align:center;
+  border-radius:16px; background:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+@media (max-width: 1024px){
+  .reviews .review, .reviews .review-card, .reviews-list > *{
+    width:min(92vw, 680px); max-width:680px;
+    min-height:200px; padding:16px 18px;
+    display:grid; grid-template-columns:64px 1fr;
+    grid-template-rows:auto 1fr auto; align-items:center; gap:10px;
+  }
+  .reviews .arrow, .reviews .nav-prev, .reviews .nav-next{
+    position:sticky; top:50%; transform:translateY(-50%);
+  }
+  .reviews{ overflow-x:clip; }
+}
+/* Pokud je to iframe, aspoň ho udělej plošší a širší */
+.reviews iframe{
+  display:block; width:min(92vw, 680px); height:240px;
+  margin-inline:auto; border-radius:16px; overflow:hidden;
+}
+
+/* 5) FOOTER – zarovnat na střed */
+footer, .site-footer, #footer{ text-align:center; }
+footer .container, .site-footer .container, #footer .container{
+  max-width:min(var(--content-max), 100% - 2*var(--page-gutter));
+  margin-inline:auto;
+}
+footer .columns, .site-footer .columns{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center;
+}
