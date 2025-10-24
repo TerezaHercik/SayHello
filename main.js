@@ -1,4 +1,4 @@
-/* main.js
+x/* main.js
    Upravený, robustní skript pro navigaci, slider, cookie banner, flip karty a drobné UI helpers.
    Uložit přes ./main.js (bez diff headeru).
 */
@@ -286,3 +286,97 @@ if (window.matchMedia('(max-width: 600px)').matches) {
     if (e.key === 'Escape') { e.preventDefault(); decline(); }
   });
 })();
+// Sticky navbar – zmenší se po scrollu
+window.addEventListener('scroll', () => {
+  const body = document.body;
+  if (window.scrollY > 80) {
+    body.classList.add('scrolled');
+  } else {
+    body.classList.remove('scrolled');
+  }
+});
+// Přidá/odebere class "scrolled" pro zmenšení navbaru při posunu
+window.addEventListener('scroll', () => {
+  document.body.classList.toggle('scrolled', window.scrollY > 80);
+});
+// zmenší navbar při scrollu
+window.addEventListener('scroll', () => {
+  document.body.classList.toggle('scrolled', window.scrollY > 80);
+});
+// === NAVBAR SHRINK ON SCROLL ===
+window.addEventListener("scroll", () => {
+  document.body.classList.toggle("scrolled", window.scrollY > 80);
+});
+
+
+// pokud uživatel přijal cookies, banner se neukáže
+if (localStorage.getItem("cookiesAccepted")) {
+  cookieBanner.style.display = "none";
+}
+
+// kliknutí na Accept – banner zmizí a uloží se volba
+acceptBtn?.addEventListener("click", () => {
+  cookieBanner.style.opacity = "0";
+  setTimeout(() => (cookieBanner.style.display = "none"), 400);
+  localStorage.setItem("cookiesAccepted", "true");
+});
+// === Navbar shrink on scroll (ponech, pokud už máš) ===
+window.addEventListener('scroll', () => {
+  document.body.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+
+try {
+  const accepted = localStorage.getItem('cookiesAccepted') === 'true';
+  if (!accepted && cookieBanner) {
+    cookieBanner.classList.add('is-visible');
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    // fade out a schovat
+    cookieBanner.style.opacity = '0';
+    setTimeout(() => cookieBanner.style.display = 'none', 350);
+  });
+} catch (e) {
+  // pokud localStorage není k dispozici, aspoň umožni zavření
+  acceptBtn?.addEventListener('click', () => {
+    cookieBanner.style.opacity = '0';
+    setTimeout(() => cookieBanner.style.display = 'none', 350);
+  });
+}
+// === NAVBAR: shrink + darken on scroll (desktop) ===
+const header = document.querySelector('header.top-nav');
+const onScroll = () => {
+  if (!header) return;
+  if (window.scrollY > 80) {
+    header.classList.add('is-scrolled');
+  } else {
+    header.classList.remove('is-scrolled');
+  }
+};
+window.addEventListener('scroll', onScroll);
+onScroll(); // inicializace po načtení
+
+// === COOKIES banner ===
+const cookieBanner = document.getElementById('cookie-banner');
+const acceptBtn = document.getElementById('accept-cookies');
+
+try {
+  const accepted = localStorage.getItem('cookiesAccepted') === 'true';
+  if (!accepted && cookieBanner) {
+    cookieBanner.classList.add('is-visible');
+  }
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBanner.style.opacity = '0';
+    setTimeout(() => (cookieBanner.style.display = 'none'), 300);
+  });
+} catch (_) {
+  // fallback bez localStorage
+  acceptBtn?.addEventListener('click', () => {
+    cookieBanner.style.opacity = '0';
+    setTimeout(() => (cookieBanner.style.display = 'none'), 300);
+  });
+}
+

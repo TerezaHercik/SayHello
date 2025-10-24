@@ -327,14 +327,8 @@
   </div>
 
   <!-- Open in Google Maps -->
-  <a
-    class="btn map-link"
-    href="https://www.google.com/maps?q=1+Mount+Pleasant+Road,+BH15+1TU,+Poole,+United+Kingdom"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Open in Google Maps
-  </a>
+ <a href="https://goo.gl/maps/..." target="_blank" class="btn-cta btn-map">Open in Google Maps</a>
+
 </article>
 
          
@@ -359,7 +353,7 @@
           <img src="./assets/logo.png" alt="Say Hello logo" class="footer-logo-img" />
         </a>
         <p class="footer-copy">
-          © <span id="y"></span> Say Hello 2025 • Poole, Dorset •
+          © <span id="y"></span> Say Hello Beauty Studio • Poole, Dorset •
           <a href="#" class="footer-link">Cookies</a>
         </p>
       </div>
@@ -412,5 +406,90 @@
 </button>
 
     </div>
+    <script>
+  // === NAVBAR: shrink + darken on scroll (desktop) ===
+  (function () {
+    const header = document.querySelector('header.top-nav');
+    if (!header) return;
+
+    function sync() {
+      if (window.innerWidth >= 992 && window.scrollY > 80) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    document.addEventListener('DOMContentLoaded', sync);
+    sync();
+  })();
+
+  // === COOKIES banner ===
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const accept = document.getElementById('accept-cookies');
+    if (!banner) return;
+
+    try {
+      const ok = localStorage.getItem('cookiesAccepted') === 'true';
+      if (!ok) banner.classList.add('is-visible');
+      accept && accept.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        banner.style.opacity = '0';
+        setTimeout(() => (banner.style.display = 'none'), 300);
+      });
+    } catch (e) {
+      // fallback bez localStorage
+      accept && accept.addEventListener('click', () => {
+        banner.style.opacity = '0';
+        setTimeout(() => (banner.style.display = 'none'), 300);
+      });
+    }
+  })();
+</script>
+<script>
+  // === NAVBAR: shrink + darken on scroll (desktop) ===
+  (function () {
+    const header = document.querySelector('header.top-nav');
+    if (!header) return;
+
+    function sync() {
+      if (window.innerWidth >= 992 && window.scrollY > 80) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    document.addEventListener('DOMContentLoaded', sync);
+    sync();
+  })();
+
+  // === COOKIES banner ===
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const accept = document.getElementById('accept-cookies');
+    if (!banner) return;
+
+    try {
+      const ok = localStorage.getItem('cookiesAccepted') === 'true';
+      if (!ok) banner.classList.add('is-visible');
+      accept && accept.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        banner.style.opacity = '0';
+        setTimeout(() => (banner.style.display = 'none'), 300);
+      });
+    } catch (e) {
+      // fallback bez localStorage
+      accept && accept.addEventListener('click', () => {
+        banner.style.opacity = '0';
+        setTimeout(() => (banner.style.display = 'none'), 300);
+      });
+    }
+  })();
+</script>
+
   </body>
 </html>

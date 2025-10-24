@@ -2746,3 +2746,1401 @@ section#services article.card.service-card.flip-card .flip-back img {
 /* volitelné – jemný efekt na obrázek */
 #services .album-card:hover .album-img{ transform: scale(1.05); }
 
+/* === HERO: text nad fotkou + tmavý filtr pro mobil === */
+#hero { position: relative; }
+
+/* jemný černý overlay – jen na mobilu */
+@media (max-width: 640px) {
+  #hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.38); /* vyvážené ztmavení */
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* ať je text vždy nad overlayem a BÍLÝ */
+#hero .hero-content,
+#hero h1,
+#hero h2,
+#hero .subtitle {
+  position: relative;
+  z-index: 1;
+  color: #fff !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25); /* jemné doostření čitelnosti */
+}
+
+/* můžeš přitvrdit overlay na úplně malých mobilech */
+@media (max-width: 380px) {
+  #hero::after { background: rgba(0,0,0,.46); }
+}
+
+/* === NAVBAR: mezera od pravého okraje pro „Menu“ chip === */
+/* pokryje běžné názvy tříd – vezme si to ten, který na stránce existuje */
+.site-header,
+.header,
+.navbar {
+  padding-right: max(16px, env(safe-area-inset-right)); /* i pro iPhone s notchem */
+}
+
+/* samotné tlačítko/čip Menu (zkombinované selektory pro jistotu) */
+.site-header .menu-toggle,
+.header .menu-toggle,
+.navbar .menu-toggle,
+.site-header .btn-menu,
+.header .btn-menu,
+.navbar .btn-menu {
+  margin-right: 12px;               /* odsazení od pravého okraje */
+}
+
+/* pokud je „Menu“ chip absolutně vpravo, posuň ho dovnitř */
+.site-header .menu-chip,
+.header .menu-chip,
+.navbar .menu-chip {
+  right: 16px;                      /* když je posicovaný absolutně */
+}
+
+/* pro větší tap target na mobilu */
+@media (max-width: 640px) {
+  .site-header .menu-toggle,
+  .header .menu-toggle,
+  .navbar .menu-toggle,
+  .site-header .btn-menu,
+  .header .btn-menu,
+  .navbar .btn-menu {
+    padding: 10px 14px;
+  }
+}
+/* HERO: pracuj s jakýmkoli názvem wrapperu (vezme #hero, .hero, .hero-section) */
+:is(#hero, .hero, .hero-section) { position: relative; }
+
+/* jemný černý overlay jen na mobilu */
+@media (max-width: 640px) {
+  :is(#hero, .hero, .hero-section)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.38);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* text v hero vždy nad fotkou a BÍLÝ */
+:is(#hero, .hero, .hero-section) :is(h1, h2, .subtitle, .tagline, .hero-title, .hero-subtitle) {
+  position: relative;
+  z-index: 1;
+  color: #fff !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+/* základní padding hlavičky + respekt k safe area na iPhonech */
+.top-nav {
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* nejčastější názvy pro „Menu“ tlačítko – použije se to, co v DOMu existuje */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip) {
+  margin-right: 12px;              /* odsazení od pravého okraje */
+  /* větší tap target na mobilu */
+  padding: 10px 14px;
+}
+
+/* kdyby bylo tlačítko pozicované absolutně úplně vpravo, posuň ho dovnitř */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip)[style*="right"],
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip).is-absolute {
+  right: 16px !important;
+}
+/* =========================================
+   HERO (MOBIL): bílý text + lehký černý filtr
+   - funguje pro #hero, .hero i .hero-section
+   ========================================= */
+@media (max-width: 640px) {
+  :is(#hero, .hero, .hero-section) {
+    position: relative;
+    isolation: isolate;            /* vlastní stacking context */
+  }
+  /* tmavý filtr přes fotku jen na mobilu */
+  :is(#hero, .hero, .hero-section)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.42);   /* jemné ztmavení pro čitelnost */
+    pointer-events: none;
+    z-index: 1;                    /* pod textem, nad fotkou */
+  }
+  /* samotná fotka / media vrstva vždy pod overlayem */
+  :is(#hero, .hero, .hero-section) :is(img, video, .hero-media){
+    position: relative;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* texty v hero – vždy bílé a nad filtrem */
+  :is(#hero, .hero, .hero-section) :is(h1, h2, h3, .hero-title, .hero-subtitle, .subtitle, .tagline){
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  }
+}
+
+/* =========================================
+   NAVBAR .top-nav: „Menu“ čip nelepí na pravý okraj
+   ========================================= */
+.top-nav {
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* přidej pravý odstup pro různé možné názvy tlačítka */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip, [aria-label*="menu" i]) {
+  margin-right: 12px;
+  padding: 10px 14px;              /* větší tap target na mobilu */
+}
+
+/* kdyby bylo tlačítko absolutně zarovnané k pravému okraji */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip)[style*="right"],
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip).is-absolute {
+  right: 16px !important;
+}
+/* =========================================
+   HERO (MOBIL): bílé texty vždy nad filtrem
+   ========================================= */
+@media (max-width: 640px) {
+  /* základní nastavení hero wrapperu */
+  :is(#hero, .hero, .hero-section) {
+    position: relative;
+    isolation: isolate; /* nový kontext vrstvení */
+  }
+
+  /* černý poloprůhledný filtr přes fotku */
+  :is(#hero, .hero, .hero-section)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1; /* pod textem, nad fotkou */
+    pointer-events: none;
+  }
+
+  /* samotné obrázky nebo videa jsou úplně pod overlayem */
+  :is(#hero, .hero, .hero-section) :is(img, video, .hero-bg) {
+    position: relative;
+    z-index: 0;
+  }
+
+  /* texty v hero sekci – NAD vším */
+  :is(#hero, .hero, .hero-section)
+    :is(h1, h2, h3, p, .hero-title, .hero-subtitle, .subtitle, .tagline) {
+    position: relative;
+    z-index: 2; /* nejvyšší vrstva */
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* =========================================
+   NAVBAR (.top-nav): odsazení Menu chipu
+   ========================================= */
+.top-nav {
+  padding-right: 20px; /* větší vnitřní mezera */
+}
+
+/* Odsazení samotného tlačítka MENU */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip, [aria-label*="menu" i]) {
+  margin-right: 14px;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 3; /* nad overlayem i fotkou */
+  color: #fff; /* pro jistotu bílý text */
+}
+
+/* Kdyby bylo absolutně vpravo, posuň ho dovnitř */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip)[style*="right"],
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip).is-absolute {
+  right: 18px !important;
+}
+/* =========================================
+   HERO (MOBIL): čistě bílé zářivé texty nad filtrem
+   ========================================= */
+@media (max-width: 640px) {
+  :is(#hero, .hero, .hero-section) {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* černý průhledný filtr přes fotku */
+  :is(#hero, .hero, .hero-section)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* pod textem */
+    pointer-events: none;
+  }
+
+  /* obrázek zůstává úplně dole */
+  :is(#hero, .hero, .hero-section) :is(img, video, .hero-bg) {
+    position: relative;
+    z-index: 0;
+  }
+
+  /* texty NAD overlayem + zářivý efekt */
+  :is(#hero, .hero, .hero-section)
+    :is(h1, h2, h3, p, .hero-title, .hero-subtitle, .subtitle, .tagline) {
+    position: relative;
+    z-index: 2;
+    color: #ffffff !important;          /* čistě bílá */
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.6),
+      0 0 6px rgba(255, 255, 255, 0.3); /* jemný „glow“ efekt */
+    font-weight: 700;
+  }
+}
+
+/* =========================================
+   NAVBAR (.top-nav): posunutí tlačítka Menu
+   ========================================= */
+.top-nav {
+  padding-right: 28px; /* větší mezera vpravo */
+  position: relative;
+  z-index: 10; /* nad fotkou hero */
+}
+
+/* přímé tlačítko Menu */
+.top-nav button,
+.top-nav .menu-toggle,
+.top-nav .btn-menu,
+.top-nav .menu-btn,
+.top-nav .menu-chip {
+  margin-right: 18px;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 11; /* jistota, že bude vidět nad hero obrázkem */
+  color: #fff;
+}
+
+/* pokud je zarovnané absolutně k pravému okraji, posuň ho */
+.top-nav [style*="right"],
+.top-nav .is-absolute {
+  right: 18px !important;
+}
+
+/* =========================
+   1) HERO TEXT (MOBILE) – čistě bílý, NAD overlayem
+   ========================= */
+@media (max-width: 640px) {
+  :is(#hero, .hero, .hero-section) { position: relative; isolation: isolate; }
+  :is(#hero, .hero, .hero-section)::before{
+    content:""; position:absolute; inset:0; background:rgba(0,0,0,.50);
+    z-index:1; pointer-events:none;  /* filtr nad fotkou, pod textem */
+  }
+  :is(#hero, .hero, .hero-section) :is(img, video, .hero-bg){ position:relative; z-index:0; }
+
+  /* text vždy úplně nahoře a BÍLÝ */
+  :is(#hero, .hero, .hero-section)
+    :is(h1, h2, h3, p, .hero-title, .hero-subtitle, .subtitle, .tagline){
+      position:relative; z-index: 3;              /* vyšší než overlay */
+      color:#fff !important;
+      text-shadow: 0 2px 10px rgba(0,0,0,.6), 0 0 6px rgba(255,255,255,.25);
+  }
+}
+
+/* =========================
+   2) NAVBAR (.top-nav) – viditelné pozadí + MENU odsazení
+   ========================= */
+.top-nav{
+  position: relative;
+  z-index: 10000;                           /* vždy nad hero overlayem */
+  display: flex;                            /* rozumné rozložení */
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;                       /* včetně pravého vnitřního odsazení */
+  padding-right: max(22px, env(safe-area-inset-right));
+}
+
+/* když máš uvnitř wrapper (někdy .nav / .nav-inner), přebere padding */
+.top-nav :is(.nav, .nav-inner){ width:100%; display:flex; align-items:center; }
+
+/* poslední prvek v headeru (většinou MENU) na pravou stranu + mezera od okraje */
+.top-nav > *:last-child,
+.top-nav :is(.nav, .nav-inner) > *:last-child{
+  margin-left: auto;                        /* odsun doprava */
+  margin-right: 18px !important;            /* mezera od pravého okraje */
+  white-space: nowrap;
+}
+
+/* chytíme nejběžnější MENU tlačítka a dáme jim stejné odsazení */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip, [aria-label*="menu" i]){
+  margin-right: 18px !important;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 10001;                           /* jistota nad fotkou */
+  color: #fff;
+}
+
+/* pokud je MENU absolutně přilepené k pravému okraji → posun dovnitř */
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip, [aria-label*="menu" i])[style*="right"],
+.top-nav :is(.menu-toggle, .btn-menu, .menu-btn, .hamburger, .menu-chip, [aria-label*="menu" i]).is-absolute{
+  right: 18px !important;
+}
+
+/* pro jistotu: cokoliv, co je úplně poslední v .top-nav a je A/BUTTON */
+.top-nav :is(a,button):last-child{ margin-right: 18px !important; }
+/* === 24/10 — MOBILE NAV + HERO FIXES ===================== */
+
+/* 1) NAVBAR: na mobilu průhledná hlavička + bezpečný spacing vpravo */
+@media (max-width: 640px) {
+  .top-nav{
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+
+  /* vnitřní odsazení kontejneru v headeru */
+  .top-nav .nav-inner{
+    padding-inline: 16px !important;
+  }
+
+  /* „Menu“ chip – dál od pravého okraje + větší tap target */
+  #menuToggle.hamburger{
+    margin-right: 12px !important;
+    padding: 10px 14px !important;
+  }
+}
+
+/* 2) HERO: lehký černý filtr jen na mobilu + bílý text nad vším */
+@media (max-width: 640px) {
+  .hero{ position: relative; isolation: isolate; }
+
+  /* filtr jde mezi fotku a text */
+  .hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1;            /* pod textem, nad fotkou */
+    pointer-events: none;
+  }
+
+  /* text ať je vždy úplně nahoře a bílý */
+  .hero .hero-content,
+  .hero .hero-content :is(h1, h2, .tagline){
+    position: relative;
+    z-index: 2 !important; /* nad overlayem */
+    color: #fff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,.55), 0 0 6px rgba(255,255,255,.25);
+  }
+}
+
+/* pro jistotu hlavičku držíme nad hero vrstvami */
+.top-nav{ z-index: 10000; }
+/* === FINAL FIX: transparent navbar + spacing right === */
+@media (max-width: 640px) {
+  header.top-nav {
+    background: rgba(255,255,255,0); /* průhledné pozadí */
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+  }
+
+  header.top-nav .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 16px;
+  }
+
+  /* Odsazení Menu tlačítka od pravého okraje */
+  header.top-nav #menuToggle,
+  header.top-nav .hamburger {
+    margin-right: 16px;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+
+  /* Logo a CTA ať mají také trochu prostoru */
+  header.top-nav img.logo {
+    margin-left: 10px;
+  }
+}
+/* === FINAL MOBILE MENU SPACING FIX === */
+@media (max-width: 640px) {
+  header.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px !important; /* menší padding nahoře a dole, víc po stranách */
+  }
+
+  header.top-nav #menuToggle,
+  header.top-nav .hamburger {
+    position: relative;
+    right: 0;
+    margin-right: 12px !important; /* mezera od okraje */
+    padding: 10px 16px !important; /* zvětšení tap zóny */
+    background: rgba(0, 0, 0, 0.4); /* volitelné – pro lepší viditelnost */
+    border-radius: 8px;
+  }
+
+  /* text "Menu" */
+  header.top-nav .hamburger span,
+  header.top-nav #menuToggle span {
+    color: #fff !important;
+  }
+}
+/* === MOBILE: pevné odsazení pro Menu u pravého okraje === */
+@media (max-width: 640px) {
+  /* header dostane skutečný vnitřní okraj vpravo */
+  header.top-nav{
+    box-sizing: border-box;
+    padding-right: max(18px, env(safe-area-inset-right)) !important;
+  }
+
+  /* wrapper s tlačítkem menu ještě trochu odsunu */
+  header.top-nav .mobile-controls{
+    margin-right: 8px !important;
+    gap: 10px;
+  }
+
+  /* samotné tlačítko Menu – větší tap-target + žádné „lepení“ k okraji */
+  header.top-nav #menuToggle.hamburger{
+    margin-right: 0 !important;       /* spolehne se na padding headeru */
+    padding: 10px 16px !important;     /* komfortní klikací plocha */
+    border-radius: 10px;
+  }
+
+  /* jistota: ať žádné absolutní pozicování neposouvá tlačítko ven */
+  header.top-nav #menuToggle.hamburger{
+    right: auto !important;
+    left: auto !important;
+    transform: none !important;
+  }
+}
+/* === MOBILE HEADER: fix CTA min-width + spacing for Menu (final) === */
+@media (max-width: 640px) {
+  /* kontejner hlavičky – malý vnitřní padding i vpravo */
+  .top-nav .nav-inner{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    gap: 10px !important;
+  }
+
+  /* skupina vpravo: ať se nevejde "přes hranu" */
+  .mobile-controls{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px !important;
+    margin-right: 4px;           /* drobná rezerva od pravého okraje */
+    flex: 0 1 auto;              /* může se zmenšovat */
+  }
+
+  /* PROBLÉM: přehnané min-width -> zrušíme, necháme se zmenšit */
+  .btn-nav--mobile{
+    min-width: auto !important;
+    padding: 10px 12px !important;
+    font-size: 0.95rem !important;
+    white-space: nowrap;
+    flex: 0 1 auto;             /* povolíme zmenšení vedle Menu */
+  }
+
+  /* Menu tlačítko: viditelné a s tap-targetem */
+  #menuToggle.hamburger{
+    margin-right: 6px !important;
+    padding: 10px 14px !important;
+    flex: 0 0 auto;
+  }
+}
+
+/* extra úzké telefony */
+@media (max-width: 360px){
+  .btn-nav--mobile{ padding: 8px 10px !important; font-size: 0.9rem !important; }
+  #menuToggle.hamburger{ padding: 9px 12px !important; }
+}
+/* === MOBILE: větší mezera u pravého okraje pro MENU (hard override) === */
+@media (max-width: 640px) {
+  /* 1) víc místa vpravo pro celý header (počítá i iPhone safe area) */
+  .top-nav .nav-inner{
+    padding-right: max(28px, calc(env(safe-area-inset-right) + 16px)) !important;
+  }
+
+  /* 2) samotné MENU – posun dál od okraje (přebije staré 18px) */
+  .top-nav :is(.hamburger, #menuToggle){
+    margin-right: 24px !important;
+    padding: 10px 16px !important; /* pohodlný tap target */
+  }
+
+  /* 3) ať se CTA může trochu zúžit, aby nepřetlačovalo MENU */
+  .btn-nav--mobile{
+    min-width: auto !important;
+  }
+}
+/* === CTA BUTTON FIX: Open in Google Maps text always stays inside === */
+.cta-button,
+button.cta,
+a.cta,
+a.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal !important; /* dovolí zalomení textu */
+  line-height: 1.3;
+  padding: 10px 18px !important;   /* dost místa po stranách */
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+/* mobilní verze – když je tlačítko úzké */
+@media (max-width: 640px) {
+  .cta-button,
+  button.cta,
+  a.cta,
+  a.btn-cta {
+    font-size: 0.95rem;
+    padding: 10px 14px !important;
+  }
+}
+/* === FINAL FIX: Open in Google Maps button alignment === */
+a.btn-cta,
+a.cta,
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap !important; /* zůstane na jednom řádku */
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  padding: 12px 26px !important;  /* víc místa kolem textu */
+  line-height: 1.2;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  a.btn-cta,
+  a.cta,
+  .cta-button {
+    font-size: 0.9rem !important;
+    padding: 10px 22px !important; /* o něco menší, ale pořád vzdušné */
+  }
+}
+/* === FINAL FIX: Open in Google Maps – white button with red border === */
+a.btn-cta,
+a.cta,
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap !important;
+  font-size: 1rem !important;
+  font-weight: 700;
+  color: #e04b3f !important;          /* červený text */
+  background-color: #fff !important;  /* bílé pozadí */
+  border: 2px solid #e04b3f !important;
+  border-radius: 9999px;
+  padding: 14px 34px !important;      /* větší prostor po stranách */
+  line-height: 1.3;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hover efekt – jemné vyplnění červenou */
+a.btn-cta:hover,
+a.cta:hover,
+.cta-button:hover {
+  background-color: #e04b3f !important;
+  color: #fff !important;
+}
+
+/* Na mobilech mírně menší, ale stále vzdušné */
+@media (max-width: 640px) {
+  a.btn-cta,
+  a.cta,
+  .cta-button {
+    font-size: 0.95rem !important;
+    padding: 12px 28px !important;
+  }
+}
+/* === SPECIFIC FIX ONLY FOR "Open in Google Maps" button === */
+.btn-map {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 0.9rem !important;          /* menší text, aby se vešel */
+  font-weight: 700;
+  color: #e04b3f !important;
+  background-color: #fff !important;
+  border: 2px solid #e04b3f !important;
+  border-radius: 9999px;
+  padding: 14px 36px !important;          /* větší button */
+  line-height: 1.3;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-map:hover {
+  background-color: #e04b3f !important;
+  color: #fff !important;
+}
+
+/* Mobile: o trochu menší písmo, ale pořád dost prostoru */
+@media (max-width: 640px) {
+  .btn-map {
+    font-size: 0.85rem !important;
+    padding: 12px 30px !important;
+  }
+}
+/* === RESTORE ORIGINAL STYLE for Read More CTA === */
+.hero .btn-cta,
+.hero a.btn-cta,
+.hero a.cta-button {
+  background-color: #e04b3f !important;   /* červené pozadí */
+  color: #fff !important;                 /* bílé písmo */
+  border: none !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 34px !important;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hover efekt – lehké zesvětlení */
+.hero .btn-cta:hover,
+.hero a.btn-cta:hover,
+.hero a.cta-button:hover {
+  background-color: #f25a4a !important;
+  color: #fff !important;
+}
+/* === HERO: hard-restore READ MORE CTA (scope jen do hero) === */
+:is(#hero, .hero, .hero-section) :is(a.cta, .btn.cta, .btn-cta) {
+  background-color: #e04b3f !important;   /* červené pozadí */
+  color: #fff !important;                 /* bílé písmo */
+  border: none !important;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 14px 34px !important;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  box-shadow: 0 8px 22px rgba(224,75,63,.25); /* volitelné – jemný glow */
+  transition: background .25s ease, transform .1s ease;
+}
+
+:is(#hero, .hero, .hero-section) :is(a.cta, .btn.cta, .btn-cta):hover,
+:is(#hero, .hero, .hero-section) :is(a.cta, .btn.cta, .btn-cta):focus-visible {
+  background-color: #c73a30 !important;
+  transform: translateY(-1px);
+}
+/* === HERO: Read More CTA – restore original green-grey style === */
+:is(#hero, .hero, .hero-section) :is(a.cta, .btn.cta, .btn-cta) {
+  background-color: #315c59 !important; /* původní zelenošedá barva */
+  color: #fff !important;                /* bílé písmo */
+  border: none !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 34px !important;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+
+:is(#hero, .hero, .hero-section) :is(a.cta, .btn.cta, .btn-cta):hover {
+  background-color: #3a6e6a !important; /* lehce světlejší na hover */
+}
+/* === DESKTOP NAV REPAIR (transparent + layout L/R) === */
+@media (min-width: 992px) {
+  header.top-nav {
+    position: absolute;          /* leží přes hero jako dřív */
+    top: 0; left: 0; width: 100%;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 10000;
+  }
+
+  /* přepiš i stavy sticky/scrolled, kdyby je JS přidával */
+  header.top-nav.is-sticky,
+  header.top-nav.sticky,
+  header.top-nav.scrolled {
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* vnitřní řádek: logo vlevo, ostatní vpravo */
+  .top-nav .nav-inner {
+    display: flex !important;
+    align-items: center;
+    padding: 16px 32px !important;
+  }
+
+  /* cokoliv s logem/brandem posílej doleva */
+  .top-nav .brand,
+  .top-nav .logo,
+  .top-nav .logo-wrap {
+    margin-right: 24px;
+    flex: 0 0 auto;
+  }
+
+  /* pravá strana – menu/links/CTA */
+  .top-nav .right,
+  .top-nav nav,
+  .top-nav .nav-links,
+  .top-nav .menu,
+  .top-nav .actions {
+    margin-left: auto !important;
+    display: flex !important;
+    align-items: center;
+    gap: 28px;                    /* rozestupy mezi položkami */
+  }
+
+  /* ať se tlačítko na desktopu nepřetlačuje s menu */
+  .btn-nav--mobile { display: none !important; }   /* jen kdyby se omylem ukazovalo */
+  .btn-nav--desktop { white-space: nowrap; }
+}
+/* === DESKTOP HEADER LAYOUT + ALIGN (logo vlevo, menu/CTA vpravo) === */
+@media (min-width: 992px) {
+  /* průhledný navbar přes hero */
+  header.top-nav{
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 10000;
+  }
+
+  /* .nav-inner je zároveň .container, takže jeho pravý okraj = pravý okraj hero */
+  .top-nav .nav-inner{
+    display: flex !important;
+    align-items: center;
+    gap: 24px;
+    padding-inline: var(--site-gutter) !important; /* stejné jako .container */
+    max-width: var(--site-max);                     /* stejné jako .container */
+    margin-inline: auto;
+  }
+
+  /* logo pevně vlevo */
+  .top-nav .brand{ order: 0; margin-right: 12px; }
+
+  /* menu + CTA napravo v jednom řádku, CTA poslední */
+  .top-nav .menu-desktop{ order: 1; margin-left: auto !important; }
+  .top-nav .menu-desktop .menu{
+    display: flex; align-items: center; gap: 28px;
+  }
+  .top-nav .menu-desktop .menu li:last-child{
+    margin-left: 10px; /* malý odstup před CTA */
+  }
+
+  /* CTA: drž se uvnitř containeru; žádné mimořádné odsazení vpravo */
+  .top-nav .menu-desktop .btn-nav{
+    /* min-width necháme, ale ať se nestrká přes okraj containeru */
+    max-width: 100%;
+  }
+
+  /* mobilní prvky na desktopu neukazovat */
+  .mobile-controls{ display: none !important; }
+}
+/* === DESKTOP NAV: tmavý overlay pruh pod navigací === */
+@media (min-width: 992px) {
+  header.top-nav{
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    background: transparent !important;        /* samotný header průhledný */
+    box-shadow: none !important;
+    z-index: 10000;
+  }
+
+  /* tmavý pruh – sedí přesně pod obsahem navigace */
+  header.top-nav::before{
+    content: "";
+    position: absolute;
+    inset: 0;                                   /* přes celý header */
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,.50),
+      rgba(0,0,0,.32)
+    ) !important;                                /* tmavší nahoře, jemnější dole */
+    pointer-events: none;                        /* nebrání kliknutí */
+    z-index: 0;                                  /* pod obsahem nav */
+    backdrop-filter: saturate(110%) blur(1px);   /* jemné zjemnění (volitelné) */
+    -webkit-backdrop-filter: saturate(110%) blur(1px);
+  }
+
+  /* při scrollu může být pruh o něco výraznější */
+  header.top-nav.scrolled::before{
+    background: rgba(0,0,0,.65) !important;
+  }
+
+  /* obsah navigace zvedneme nad overlay */
+  .top-nav .nav-inner{
+    position: relative;
+    z-index: 1;
+    display: flex !important;
+    align-items: center;
+    gap: 28px;
+    max-width: var(--site-max);
+    padding-inline: var(--site-gutter) !important;
+    margin-inline: auto;
+  }
+
+  /* zarovnání: logo vlevo, menu+CTA vpravo */
+  .top-nav .brand,
+  .top-nav .logo-wrap{ margin-right: 16px; flex: 0 0 auto; }
+  .top-nav .menu-desktop{ margin-left: auto !important; }
+  .top-nav .menu{ display: flex !important; align-items: center; gap: 28px; }
+
+  /* bílé odkazy přes tmavý pruh */
+  .top-nav .brand,
+  .top-nav .menu a{ color: #fff !important; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
+
+  /* CTA napravo */
+  .top-nav .btn-nav{
+    background:#e04b3f; color:#fff !important; padding:12px 22px; border-radius:999px; font-weight:700;
+  }
+
+  /* skryj mobilní prvky na desktopu */
+  .mobile-controls{ display: none !important; }
+}
+
+/* mobil necháme podle stávající logiky (transparent bez pruhu) */
+/* === DESKTOP NAV: zarovnání s obsahem + sticky při scrollu === */
+@media (min-width: 992px) {
+  header.top-nav {
+    position: fixed; /* zůstane nahoře i při scrollu */
+    top: 0; left: 0; width: 100%;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 10000;
+    transition: all 0.4s ease;
+  }
+
+  /* tmavý průhledný overlay */
+  header.top-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35));
+    z-index: 0;
+    pointer-events: none;
+    transition: background 0.4s ease, opacity 0.4s ease;
+  }
+
+  /* vnitřní zarovnání – stejné jako container */
+  .top-nav .nav-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--site-max);
+    margin-inline: auto;
+    padding-inline: var(--site-gutter);
+    gap: 28px;
+    transition: padding 0.4s ease;
+  }
+
+  /* logo vlevo */
+  .top-nav .logo {
+    height: 84px;
+    width: auto;
+    transition: height 0.4s ease;
+  }
+
+  /* menu + CTA vpravo */
+  .top-nav .menu-desktop {
+    margin-left: auto !important;
+  }
+  .top-nav .menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .top-nav .brand,
+  .top-nav .menu a {
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  /* CTA */
+  .top-nav .btn-nav {
+    background: #e04b3f;
+    color: #fff !important;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .top-nav .btn-nav:hover {
+    background: #c73a30;
+    transform: translateY(-1px);
+  }
+
+  /* efekt při scrollu – navbar se zmenší a ztmaví */
+  body.scrolled header.top-nav {
+    background: rgba(0,0,0,0.65) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  body.scrolled header.top-nav::before {
+    opacity: 0;
+  }
+
+  body.scrolled .top-nav .logo {
+    height: 60px;
+  }
+
+  body.scrolled .top-nav .nav-inner {
+    padding-block: 6px;
+  }
+}
+
+/* === Scroll listener === */
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* jednoduchý JS detekce scrollu */
+/* === DESKTOP NAV: přesné zarovnání + sticky shrink === */
+@media (min-width: 992px) {
+  /* header: šířku řeší jen .nav-inner (stejně jako .container) */
+  header.top-nav{
+    position: fixed;                 /* zůstane nahoře */
+    top: 0; left: 0; width: 100%;
+    padding-left: 0 !important;      /* žádný extra horizontální padding */
+    padding-right: 0 !important;
+    background: transparent;
+    z-index: 10000;
+  }
+
+  /* tmavý pruh pod navigací */
+  header.top-nav::before{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35));
+    pointer-events:none; z-index:0;
+    transition: opacity .3s ease, background .3s ease;
+  }
+
+  /* VLASTNÍ „container“ pro navbar – stejné okraje jako obsah webu */
+  .top-nav .nav-inner{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:28px;
+    max-width: var(--site-max);
+    margin-inline: auto;
+    padding-inline: var(--site-gutter); /* stejné okraje jako .container */
+    padding-block: 14px;                 /* vertikální výška pruhu */
+  }
+
+  /* logo skutečně vlevo – zrušíme dědictví paddingu */
+  .top-nav .brand{ padding-left: 0 !important; margin-left: 0 !important; }
+  .top-nav .logo-wrap{ margin-left: 0 !important; }
+  .top-nav .logo{ height: 84px; width:auto; transition: height .25s ease; }
+
+  /* menu vpravo, CTA úplně napravo -> končí přesně na pravém okraji .containeru */
+  .top-nav .menu-desktop{ margin-left: auto !important; }
+  .top-nav .menu{ display:flex; align-items:center; gap:28px; margin:0; padding:0; }
+
+  /* barvy */
+  .top-nav .brand, .top-nav .menu a{ color:#fff !important; text-shadow:0 1px 2px rgba(0,0,0,.4); }
+  .top-nav .btn-nav{ background:#e04b3f; color:#fff !important; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+  /* STICKY – po scrollu se pruh zmenší (méně vysoký, menší logo) */
+  body.scrolled .top-nav .nav-inner{ padding-block: 6px; }
+  body.scrolled .top-nav .logo{ height: 60px; }
+  body.scrolled header.top-nav::before{ background: rgba(0,0,0,.65); }
+}
+
+/* pro jistotu: zrušíme staré „levé“ odsazení brandu kdekoliv */
+.top-nav .brand{ padding-left: 0 !important; }
+/* === DESKTOP NAV — FINAL ALIGNMENT FIX === */
+@media (min-width: 992px) {
+  header.top-nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background: transparent;
+    z-index: 10000;
+  }
+
+  header.top-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35));
+    z-index: 0;
+  }
+
+  /* NAV-OBSAH — zarovnání podle stejné šířky jako ostatní sekce */
+  .top-nav .nav-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--site-max);        /* stejné jako .container */
+    margin-inline: auto;               /* vycentrované */
+    padding-inline: var(--site-gutter);/* stejné odsazení jako .container */
+    gap: 28px;
+    padding-block: 16px;
+    transition: padding 0.3s ease;
+  }
+
+  /* LOGO přesně vlevo v rámci containeru */
+  .top-nav .brand,
+  .top-nav .logo-wrap {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .top-nav .logo {
+    height: 84px;
+    transition: height 0.3s ease;
+  }
+
+  /* MENU + CTA vpravo, CTA končí zarovnaně s obsahem webu */
+  .top-nav .menu-desktop {
+    margin-left: auto !important;
+  }
+
+  .top-nav .menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* texty a CTA */
+  .top-nav .menu a,
+  .top-nav .brand {
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  .top-nav .btn-nav {
+    background: #e04b3f;
+    color: #fff !important;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .top-nav .btn-nav:hover {
+    background: #c73a30;
+    transform: translateY(-1px);
+  }
+
+  /* SCROLLOVANÁ VERZE – zmenšený navbar */
+  body.scrolled header.top-nav::before {
+    background: rgba(0,0,0,0.7);
+  }
+
+  body.scrolled .top-nav .nav-inner {
+    padding-block: 6px;
+  }
+
+  body.scrolled .top-nav .logo {
+    height: 64px;
+  }
+
+  /* Mobilní prvky schovat */
+  .mobile-controls { display: none !important; }
+}
+/* === DESKTOP NAV: přesné zarovnání na šířku .container + shrink on scroll === */
+@media (min-width: 992px) {
+  header.top-nav{
+    position: fixed; top:0; left:0; width:100%;
+    background: transparent;
+    z-index:10000;
+  }
+
+  /* tmavý pruh pod navigací */
+  header.top-nav::before{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35));
+    pointer-events:none; z-index:0;
+  }
+
+  /* NAV „container“ – stejná šířka/okraje jako .container v obsahu */
+  .top-nav .nav-inner{
+    /* přepiš staré .container šířky */
+    width: auto !important;
+    max-width: var(--site-max) !important;
+    box-sizing: border-box !important;
+    margin-inline: auto !important;
+    padding-inline: var(--site-gutter) !important; /* stejné vnitřní okraje */
+    padding-block: 16px;
+    display:flex; align-items:center; gap:28px;
+    position:relative; z-index:1;
+  }
+
+  /* logo opravdu vlevo, bez skrytých odsazení */
+  .top-nav .brand,
+  .top-nav .logo-wrap{ margin-left:0 !important; padding-left:0 !important; }
+  .top-nav .logo{ height:84px; width:auto; transition:height .25s ease; }
+
+  /* menu/CTA vpravo – CTA končí přesně jako okraj hero/„Say Hello“ */
+  .top-nav .menu-desktop{ margin-left:auto !important; flex: 0 1 auto; }
+  .top-nav .menu{
+    display:flex; align-items:center; gap:28px; margin:0; padding:0; list-style:none;
+  }
+  .top-nav .btn-nav{ white-space:nowrap; background:#e04b3f; color:#fff !important;
+    padding:12px 22px; border-radius:999px; font-weight:700; }
+
+  /* barvy odkazů přes pruh */
+  .top-nav .menu a, .top-nav .brand{
+    color:#fff !important; text-shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  /* SCROLL: zmenšení výšky + loga, lehce tmavší pozadí */
+  body.scrolled .top-nav .nav-inner{ padding-block: 6px; }
+  body.scrolled .top-nav .logo{ height:64px; }
+  body.scrolled header.top-nav::before{ background: rgba(0,0,0,.7); }
+
+  /* mobilní prvky na desktopu pryč */
+  .mobile-controls{ display:none !important; }
+}
+
+/* zruš starší dědičné odsazení brandu kdekoliv */
+.top-nav .brand{ padding-left:0 !important; margin-left:0 !important; }
+/* === DESKTOP NAV — scroll efekt: menší výška + tmavší pozadí === */
+@media (min-width: 992px) {
+  body.scrolled header.top-nav {
+    background: rgba(0,0,0,0.85) !important; /* víc tmavý */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35); /* jemný stín pro oddělení */
+    transition: all 0.4s ease;
+  }
+
+  body.scrolled header.top-nav::before {
+    opacity: 0; /* zmizí gradient overlay, necháme čistě tmavou */
+    transition: opacity 0.3s ease;
+  }
+
+  body.scrolled .top-nav .nav-inner {
+    padding-block: 4px; /* menší výška */
+    transition: padding 0.3s ease;
+  }
+
+  body.scrolled .top-nav .logo {
+    height: 56px; /* menší logo */
+    transition: height 0.3s ease;
+  }
+}
+/* === DESKTOP: navbar shrink + darken on scroll (final) === */
+@media (min-width: 992px) {
+  /* výchozí výška */
+  .top-nav .nav-inner { padding-block: 16px; }
+  .top-nav .logo { height: 84px; }
+
+  /* po scrollu – tmavší, menší, se stínem */
+  body.scrolled header.top-nav {
+    background: rgba(0,0,0,0.88) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+    transition: background .25s ease, box-shadow .25s ease;
+  }
+  body.scrolled header.top-nav::before { opacity: 0; }
+
+  body.scrolled .top-nav .nav-inner {
+    padding-block: 4px;                  /* menší pruh */
+    transition: padding .25s ease;
+  }
+  body.scrolled .top-nav .logo {
+    height: 56px;                         /* menší logo */
+    transition: height .25s ease;
+  }
+}
+/* Cookies banner: defaultně skrytý, ukáže ho JS jen pokud není souhlas */
+#cookie-banner { display: none; opacity: 0; transition: opacity .35s ease; }
+#cookie-banner.is-visible { display: flex; opacity: 1; }
+/* ===== NAVBAR – jednotné chování + shrink/darken na desktopu ===== */
+@media (min-width: 992px) {
+  header.top-nav {
+    position: fixed !important;
+    top: 0; left: 0; width: 100%;
+    z-index: 10000 !important;
+    background: transparent !important;
+  }
+
+  /* jediný overlay pruh pod obsahem navigace (nahradí všechny staré) */
+  header.top-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35)) !important;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity .25s ease, background .25s ease;
+  }
+
+  /* vnitřek nav – zarovnání na šířku containeru */
+  .top-nav .nav-inner {
+    position: relative; z-index: 1;
+    display: flex !important; align-items: center; justify-content: space-between;
+    max-width: var(--site-max) !important;
+    margin-inline: auto !important;
+    padding-inline: var(--site-gutter) !important;
+    padding-block: 16px !important;  /* výchozí výška */
+    gap: 28px;
+    transition: padding .25s ease;
+  }
+
+  /* logo a menu/cta */
+  .top-nav .logo { height: 84px !important; width: auto; transition: height .25s ease; }
+  .top-nav .brand, .top-nav .logo-wrap { margin-left: 0 !important; padding-left: 0 !important; }
+  .top-nav .menu-desktop { margin-left: auto !important; }
+  .top-nav .menu { display: flex; align-items: center; gap: 28px; margin: 0; padding: 0; list-style: none; }
+  .top-nav .menu a, .top-nav .brand { color: #fff !important; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
+  .top-nav .btn-nav { background:#e04b3f; color:#fff !important; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+  /* === STAV PO SCROLLU — aplikujeme na header pomocí .is-scrolled === */
+  header.top-nav.is-scrolled {
+    background: rgba(0,0,0,.88) !important;          /* tmavší */
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  }
+  header.top-nav.is-scrolled::before { opacity: 0 !important; } /* skryj gradient */
+
+  header.top-nav.is-scrolled .nav-inner { padding-block: 4px !important; } /* nižší pruh */
+  header.top-nav.is-scrolled .logo { height: 56px !important; }            /* menší logo */
+
+  /* skryj mobilní prvky na desktopu */
+  .mobile-controls { display: none !important; }
+}
+
+/* ===== COOKIES banner – zobrazí se jen, když ho JS zapne ===== */
+#cookie-banner { display: none; opacity: 0; transition: opacity .3s ease; }
+#cookie-banner.is-visible { display: flex; opacity: 1; }
+/* === FINAL: desktop navbar shrink + darken on scroll === */
+@media (min-width: 992px) {
+  header.top-nav{
+    position: fixed !important;
+    top: 0; left: 0; width: 100%;
+    z-index: 10000 !important;
+    background: transparent !important;
+  }
+  /* overlay pruh pod navigací */
+  header.top-nav::before{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35)) !important;
+    pointer-events:none; z-index:0; transition: opacity .25s ease, background .25s ease;
+  }
+
+  .top-nav .nav-inner{
+    position:relative; z-index:1;
+    display:flex !important; align-items:center; justify-content:space-between;
+    max-width: var(--site-max) !important;
+    margin-inline:auto !important;
+    padding-inline: var(--site-gutter) !important;
+    padding-block: 16px !important;               /* výchozí výška */
+    gap:28px; transition: padding .25s ease;
+  }
+  .top-nav .logo{ height:84px !important; width:auto; transition:height .25s ease; }
+
+  /* stav po scrollu – APLIKUJE SE TŘÍDOU na HEADERU */
+  header.top-nav.is-scrolled{
+    background: rgba(0,0,0,.9) !important;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  }
+  header.top-nav.is-scrolled::before{ opacity:0 !important; } /* skryj gradient */
+  header.top-nav.is-scrolled .nav-inner{ padding-block: 4px !important; }
+  header.top-nav.is-scrolled .logo{ height:56px !important; }
+
+  .mobile-controls{ display:none !important; }
+}
+
+/* === FINAL: cookies banner – ukaž jen, když to JS dovolí === */
+#cookie-banner{ display:none; opacity:0; transition:opacity .3s ease; }
+#cookie-banner.is-visible{ display:flex; opacity:1; }
+/* === FINAL: desktop navbar shrink + darken on scroll === */
+@media (min-width: 992px) {
+  header.top-nav{
+    position: fixed !important;
+    top: 0; left: 0; width: 100%;
+    z-index: 10000 !important;
+    background: transparent !important;
+  }
+  /* overlay pruh pod navigací */
+  header.top-nav::before{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35)) !important;
+    pointer-events:none; z-index:0; transition: opacity .25s ease, background .25s ease;
+  }
+
+  .top-nav .nav-inner{
+    position:relative; z-index:1;
+    display:flex !important; align-items:center; justify-content:space-between;
+    max-width: var(--site-max) !important;
+    margin-inline:auto !important;
+    padding-inline: var(--site-gutter) !important;
+    padding-block: 16px !important;               /* výchozí výška */
+    gap:28px; transition: padding .25s ease;
+  }
+  .top-nav .logo{ height:84px !important; width:auto; transition:height .25s ease; }
+
+  /* stav po scrollu – APLIKUJE SE TŘÍDOU na HEADERU */
+  header.top-nav.is-scrolled{
+    background: rgba(0,0,0,.9) !important;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  }
+  header.top-nav.is-scrolled::before{ opacity:0 !important; } /* skryj gradient */
+  header.top-nav.is-scrolled .nav-inner{ padding-block: 4px !important; }
+  header.top-nav.is-scrolled .logo{ height:56px !important; }
+
+  .mobile-controls{ display:none !important; }
+}
+
+/* === FINAL: cookies banner – ukaž jen, když to JS dovolí === */
+#cookie-banner{ display:none; opacity:0; transition:opacity .3s ease; }
+#cookie-banner.is-visible{ display:flex; opacity:1; }
