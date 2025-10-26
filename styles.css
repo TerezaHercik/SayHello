@@ -4144,3 +4144,27 @@ html, body {
 /* === FINAL: cookies banner – ukaž jen, když to JS dovolí === */
 #cookie-banner{ display:none; opacity:0; transition:opacity .3s ease; }
 #cookie-banner.is-visible{ display:flex; opacity:1; }
+/* === GALLERY ARROWS: vždy nad obsahem a klikatelné === */
+#gallery .slider { position: relative; }
+#gallery .slider-btn {
+  z-index: 10 !important;
+  pointer-events: auto !important;
+}
+#gallery .slider-track {
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+}
+/* === GALLERY ARROWS: vždy nahoře a klikatelné === */
+#gallery .slider { position: relative; }
+#gallery .slider-btn {
+  z-index: 20 !important;
+  pointer-events: auto !important;
+}
+
+/* === Menu overlay: když není otevřený, NIKDY neblokuje kliky === */
+.menu-overlay { pointer-events: none !important; }
+.menu-overlay.open { pointer-events: auto !important; }
+.menu-overlay[hidden] { display: none !important; }
+
+/* === Header overlay: jistota, že nebere kliky mimo hlavičku === */
+header.top-nav::before { pointer-events: none !important; }

@@ -1,4 +1,4 @@
-x/* main.js
+/* main.js
    Upravený, robustní skript pro navigaci, slider, cookie banner, flip karty a drobné UI helpers.
    Uložit přes ./main.js (bez diff headeru).
 */
@@ -324,6 +324,25 @@ acceptBtn?.addEventListener("click", () => {
 window.addEventListener('scroll', () => {
   document.body.classList.toggle('scrolled', window.scrollY > 80);
 });
+// === GALLERY: arrows scroll ===
+document.querySelectorAll('.slider[data-slider]').forEach(slider => {
+  const track = slider.querySelector('[data-track]');
+  const prev  = slider.querySelector('.slider-btn.prev');
+  const next  = slider.querySelector('.slider-btn.next');
+  if (!track || !prev || !next) return;
+
+  // kolik posouvat: skoro šířka viditelné plochy
+  const step = () => Math.max(200, Math.round(track.clientWidth * 0.9));
+
+  const go = dir => {
+    track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+  };
+
+  prev.addEventListener('click', e => { e.preventDefault(); go(-1); });
+  next.addEventListener('click', e => { e.preventDefault(); go(1); });
+
+  // drag/scroll v mobilu zůstává zachovaný díky overflow-x:auto
+});
 
 
 try {
@@ -380,3 +399,23 @@ try {
   });
 }
 
+// === GALLERY: arrows scroll (delegation) ===
+document.addEventListener('click', (e) => {
+  const prevBtn = e.target.closest('.slider-btn.prev');
+  const nextBtn = e.target.closest('.slider-btn.next');
+  const btn = prevBtn || nextBtn;
+  if (!btn) return;
+
+  const slider = btn.closest('.slider[data-slider]');
+  const track  = slider?.querySelector('[data-track]');
+  if (!track) return;
+
+  const dir = prevBtn ? -1 : 1;
+  const step = Math.max(200, Math.round(track.clientWidth * 0.9));
+  track.scrollBy({ left: dir * step, behavior: 'smooth' });
+});
+// === MENU OVERLAY: jistota že je vypnutý (pokud není otevřen) ===
+const overlay = document.getElementById('menuOverlay');
+if (overlay && !overlay.classList.contains('open')) {
+  overlay.setAttribute('hidden', '');
+}
